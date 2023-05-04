@@ -1,13 +1,20 @@
 # Analisis kebutuhan pengguna
 + **admin** :
   + melakukan sign in
-  + mengelola akun user
+  + mengelola akun user (data: username, nama, password)
   + mengelola rekapan pemasukan dan pengeluaran harian/bulanan/tahunan
   + mengelola jenis pengeluaran
   + menginput pengeluaran
   + mendapat notifikasi untuk mengambil galon minimal 3 hari setelah pengantaran
   + mengelola data customer (data: nama instansi, no hp, alamat)
 + **user** :
+  + melakukan sign in
+  + menginput penjualan
+    + pilihan harga per galon (6000, 7000)
+    + pilihan tipe penjualan (antar mobil, antar motor, beli ditempat)
+    + pilih tipe pembayaran (lunas, bon)
+    + jumlah galon
+    + total harga
 # [Material Dashboard 2](http://demos.creative-tim.com/material-dashboard/pages/dashboard.html?ref=readme-md2) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?url=https://www.creative-tim.com/product/material-dashboard&text=Check%20Material%20Dashboard%202%20made%20by%20@CreativeTim%20#webdesign%20#dashboard%20#materialdesign%20#html%20https://www.creative-tim.com/product/material-dashboard) [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.gg/FhCJCaHdQa)
 
 ![version](https://img.shields.io/badge/version-3.1.0-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/material-dashboard.svg)](https://github.com/creativetimofficial/material-dashboard/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/material-dashboard.svg)](https://github.com/creativetimofficial/material-dashboard/issues?q=is%3Aissue+is%3Aclosed)
