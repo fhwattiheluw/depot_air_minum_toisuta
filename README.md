@@ -9,6 +9,8 @@
   + mengelola data customer (data: nama instansi, no hp, alamat, keterangan)
   + input jumlah peminjaman galon untuk customer
   + ada rekapan untuk pengantar motor, mobil dan beli di tempat
+  + ada rekapan bulanan untuk setiap customer
+  + ada rekapan pengeluaran setiap item perbulan
 + **user** :
   + melakukan sign in
   + menginput penjualan
