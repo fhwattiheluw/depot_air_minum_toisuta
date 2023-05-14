@@ -7,7 +7,7 @@
   + menginput pengeluaran
   + mendapat notifikasi untuk mengambil galon pada customer minimal 3 hari setelah pengantaran (untuk mobil dan motor)
   + mengelola data customer (data: nama instansi, no hp, alamat, keterangan)
-  + input jumlah peminjaman galon untuk customer
+  + input jumlah peminjaman galon untuk customer (bisa edit keterangan)
   + ada rekapan untuk pengantar motor, mobil dan beli di tempat
   + ada rekapan bulanan untuk setiap customer
   + ada rekapan pengeluaran setiap item perbulan
