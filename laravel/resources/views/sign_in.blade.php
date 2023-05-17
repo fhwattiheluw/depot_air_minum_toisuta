@@ -55,11 +55,11 @@
               <div class="card-body">
                 <form action="{{route('dashboard')}}" role="form" class="text-start">
                   <div class="input-group input-group-outline  is-invalid my-3">
-                    <label class="form-label">Email</label>
+                    <label class="form-label">Username</label>
                     <input type="email" class="form-control">
                   </div>
                   <div class="input-group input-group-outline  is-invalid mb-3">
-                    <label class="form-label">Password</label>
+                    <label class="form-label">Kata sandi</label>
                     <input type="password" class="form-control">
                   </div>
                   <div class="form-check form-switch d-flex align-items-center mb-3">
