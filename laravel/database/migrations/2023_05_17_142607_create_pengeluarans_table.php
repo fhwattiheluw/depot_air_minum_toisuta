@@ -15,7 +15,10 @@ class CreatePengeluaransTable extends Migration
     {
         Schema::create('pengeluarans', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->char('nama_pengeluaran', 150);
+            $table->timestamps($precision = 0);
+            // $table->primary('id');
+            // $table->increments('id');
         });
     }
 

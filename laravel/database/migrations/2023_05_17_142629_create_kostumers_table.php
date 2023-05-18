@@ -15,7 +15,12 @@ class CreateKostumersTable extends Migration
     {
         Schema::create('kostumers', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nama_kostumer', 100);
+            $table->string('telp', 100);
+            $table->string('alamat', 100);
+            $table->timestamps($precision = 0);
+            // $table->primary('id');
+            // $table->increments('id');
         });
     }
 

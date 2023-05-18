@@ -14,8 +14,11 @@ class CreatePeminjamanGalonsTable extends Migration
     public function up()
     {
         Schema::create('peminjaman_galons', function (Blueprint $table) {
-            $table->id();
+            $table->id()->autoIncrement();
+            $table->int('jumlah_galon',10);
+            $table->text('keterangan');
             $table->timestamps();
+            $table->foreignId('id_konstumer')->constrained('konstumers')->nullable($value = true);
         });
     }
 
