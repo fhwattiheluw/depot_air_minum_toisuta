@@ -22,7 +22,7 @@ class CreatePenjualansTable extends Migration
             $table->enum('pembayaran', ['lunas', 'bon']);
             $table->timestamps($precision = 0);
             $table->unsignedBigInteger('id_kostumer');
-             $table->foreign('id_kostumer')->references('id')->on('konstumers');
+             $table->foreign('id_kostumer')->references('id')->on('kostumers');
 
         });
     }

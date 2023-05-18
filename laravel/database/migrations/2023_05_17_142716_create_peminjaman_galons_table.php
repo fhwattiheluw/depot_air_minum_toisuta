@@ -19,7 +19,7 @@ class CreatePeminjamanGalonsTable extends Migration
             $table->text('keterangan');
             $table->timestamps();
             $table->unsignedBigInteger('id_kostumer');
-             $table->foreign('id_kostumer')->references('id')->on('konstumers');
+            $table->foreign('id_kostumer')->references('id')->on('kostumers');
         });
     }
 
