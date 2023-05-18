@@ -19,8 +19,6 @@ class CreateKostumersTable extends Migration
             $table->string('telp', 100);
             $table->string('alamat', 100);
             $table->timestamps($precision = 0);
-            // $table->primary('id');
-            // $table->increments('id');
         });
     }
 

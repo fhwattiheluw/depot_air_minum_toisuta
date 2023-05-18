@@ -11,14 +11,12 @@ class DetailPengeluaran extends Migration
       Schema::create('detail_pengeluaran', function (Blueprint $table) {
           $table->id();
           $table->date('tanggal');
-          $table->int('jumlah',100);
+          $table->bigInteger('jumlah');
           $table->text('keterangan');
-          $table->text('foto');
+          $table->binary('foto');
           $table->timestamps($precision = 0);
-
-           $table->foreignId('item_pengeluaran')->constrained('pengeluarans');
-          // $table->primary('id');
-          // $table->increments('id');
+          $table->unsignedBigInteger('id_pengeluaran');
+           $table->foreign('id_pengeluaran')->references('id')->on('pengeluarans');
       });
     }
 

@@ -15,10 +15,11 @@ class CreatePeminjamanGalonsTable extends Migration
     {
         Schema::create('peminjaman_galons', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->int('jumlah_galon',10);
+            $table->bigInteger('jumlah_galon');
             $table->text('keterangan');
             $table->timestamps();
-            $table->foreignId('id_konstumer')->constrained('konstumers')->nullable($value = true);
+            $table->unsignedBigInteger('id_kostumer');
+             $table->foreign('id_kostumer')->references('id')->on('konstumers');
         });
     }
 

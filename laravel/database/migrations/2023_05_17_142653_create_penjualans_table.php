@@ -17,12 +17,12 @@ class CreatePenjualansTable extends Migration
             $table->id()->autoIncrement();
             $table->date('tanggal');
             $table->string('tipe_penjualan',100);
-            $table->int('harga_satuan',100);
-            $table->int('jumlah',100);
+            $table->bigInteger('harga_satuan');
+            $table->bigInteger('jumlah');
             $table->enum('pembayaran', ['lunas', 'bon']);
             $table->timestamps($precision = 0);
-            // $table->primary('id');
-            $table->foreignId('id_konstumer')->constrained('konstumers')->nullable($value = true);
+            $table->unsignedBigInteger('id_kostumer');
+             $table->foreign('id_kostumer')->references('id')->on('konstumers');
 
         });
     }
