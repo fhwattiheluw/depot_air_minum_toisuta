@@ -10,4 +10,9 @@ class PengeluaranController extends Controller
     {
       return view('kelola_jenis_pengeluaran');
     }
+
+    public function form()
+    {
+      return view('form_pengeluaran');
+    }
 }
