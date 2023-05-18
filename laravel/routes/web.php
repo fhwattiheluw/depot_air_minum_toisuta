@@ -23,3 +23,6 @@ Route::get('/rekapan/semua',[RekapanController::class, 'semua'])->name('rekapan.
 Route::get('/rekapan/pengantaran',[RekapanController::class, 'pengantaran'])->name('rekapan.pengantaran');
 Route::get('/rekapan/kostumer',[RekapanController::class, 'kostumer'])->name('rekapan.kostumer');
 Route::get('/rekapan/pengeluaran',[RekapanController::class, 'pengeluaran'])->name('rekapan.pengeluaran');
+
+
+//coba pusshhh
