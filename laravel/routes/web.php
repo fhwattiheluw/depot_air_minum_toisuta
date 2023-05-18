@@ -14,6 +14,7 @@ Route::get('/',[LoginController::class, 'index'])->name('login');
 
 Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');
 Route::get('/user/kelola',[AkunController::class, 'kelola'])->name('user.kelola');
+Route::post('/user/kelola',[AkunController::class, 'store'])->name('user.store');
 Route::get('/pengeluaran/kelola',[PengeluaranController::class, 'index'])->name('pengeluaran.kelola');
 Route::get('/kostumer/kelola',[KostumerController::class, 'index'])->name('kostumer.kelola');
 Route::get('/penjualan/input',[PenjualanController::class, 'index'])->name('penjualan.input');
@@ -23,7 +24,3 @@ Route::get('/rekapan/semua',[RekapanController::class, 'semua'])->name('rekapan.
 Route::get('/rekapan/pengantaran',[RekapanController::class, 'pengantaran'])->name('rekapan.pengantaran');
 Route::get('/rekapan/kostumer',[RekapanController::class, 'kostumer'])->name('rekapan.kostumer');
 Route::get('/rekapan/pengeluaran',[RekapanController::class, 'pengeluaran'])->name('rekapan.pengeluaran');
-
-
-//coba pusshhh
-//coba lagi

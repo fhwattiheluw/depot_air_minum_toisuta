@@ -38,24 +38,25 @@ Ini judul
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Username</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kata sandi</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Level</th>
                 <th class="text-secondary opacity-7"></th>
               </tr>
             </thead>
             <tbody>
+              <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <tr>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">John Michael</h6>
+                      <h6 class="mb-0 text-sm"><?php echo e($item->name); ?></h6>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <p class="text-xs font-weight-bold mb-0">Manager</p>
+                  <p class="text-xs font-weight-bold mb-0"><?php echo e($item->email); ?></p>
                 </td>
                 <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-bold">12313131</span>
+                  <span class="text-secondary text-xs font-weight-bold"><?php echo e($item->level); ?></span>
                 </td>
                 <td class="align-middle">
                   <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
@@ -66,6 +67,7 @@ Ini judul
                   </a>
                 </td>
               </tr>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </tbody>
           </table>
@@ -76,7 +78,8 @@ Ini judul
 </div>
 
 <!-- Modal -->
-<form class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form class="modal fade" method="post" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <?php echo csrf_field(); ?>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -89,25 +92,25 @@ Ini judul
         <div class="col">
           <div class="input-group input-group-outline is-invalid my-3">
             <label class="form-label">Nama</label>
-            <input type="email" class="form-control">
+            <input type="text" name="name" class="form-control">
           </div>
         </div>
         <div class="col">
           <div class="input-group input-group-outline is-invalid my-3">
             <label class="form-label">Username</label>
-            <input type="email" class="form-control">
+            <input type="email" name="email" class="form-control">
           </div>
         </div>
         <div class="col">
           <div class="input-group input-group-outline is-invalid my-3">
             <label class="form-label">Kata sandi</label>
-            <input type="email" class="form-control">
+            <input type="text" name="password" class="form-control">
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>
