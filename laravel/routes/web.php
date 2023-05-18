@@ -8,6 +8,7 @@ use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\KostumerController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PeminjamanGalonController;
+use App\Http\Controllers\RekapanController;
 
 Route::get('/',[LoginController::class, 'index'])->name('login');
 
@@ -18,3 +19,7 @@ Route::get('/kostumer/kelola',[KostumerController::class, 'index'])->name('kostu
 Route::get('/penjualan/input',[PenjualanController::class, 'index'])->name('penjualan.input');
 Route::get('/pengeluaran/form',[PengeluaranController::class, 'form'])->name('pengeluaran.form');
 Route::get('/peminjaman/form',[PeminjamanGalonController::class, 'form'])->name('peminjaman.form');
+Route::get('/rekapan/semua',[RekapanController::class, 'semua'])->name('rekapan.semua');
+Route::get('/rekapan/pengantaran',[RekapanController::class, 'pengantaran'])->name('rekapan.pengantaran');
+Route::get('/rekapan/kostumer',[RekapanController::class, 'kostumer'])->name('rekapan.kostumer');
+Route::get('/rekapan/pengeluaran',[RekapanController::class, 'pengeluaran'])->name('rekapan.pengeluaran');
