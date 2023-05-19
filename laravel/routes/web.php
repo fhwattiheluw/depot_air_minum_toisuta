@@ -16,7 +16,9 @@ Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard'
 Route::get('/user/kelola',[AkunController::class, 'kelola'])->name('user.kelola');
 Route::post('/user/kelola',[AkunController::class, 'store'])->name('user.store');
 Route::get('/pengeluaran/kelola',[PengeluaranController::class, 'index'])->name('pengeluaran.kelola');
+Route::post('/pengeluaran/kelola',[PengeluaranController::class, 'store'])->name('pengeluaran.store');
 Route::get('/kostumer/kelola',[KostumerController::class, 'index'])->name('kostumer.kelola');
+Route::post('/kostumer/kelola',[KostumerController::class, 'store'])->name('kostumer.store');
 Route::get('/penjualan/input',[PenjualanController::class, 'index'])->name('penjualan.input');
 Route::get('/pengeluaran/form',[PengeluaranController::class, 'form'])->name('pengeluaran.form');
 Route::get('/peminjaman/form',[PeminjamanGalonController::class, 'form'])->name('peminjaman.form');

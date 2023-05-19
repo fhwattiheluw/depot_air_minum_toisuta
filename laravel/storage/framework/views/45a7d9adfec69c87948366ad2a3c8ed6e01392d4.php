@@ -41,11 +41,12 @@ ini judul
               </tr>
             </thead>
             <tbody>
+              <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <tr>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">nama pengeluaran</h6>
+                      <h6 class="mb-0 text-sm"><?php echo e($item->nama_pengeluaran); ?></h6>
                     </div>
                   </div>
                 </td>
@@ -58,6 +59,7 @@ ini judul
                   </a>
                 </td>
               </tr>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </tbody>
           </table>
@@ -68,7 +70,8 @@ ini judul
 </div>
 
 <!-- Modal -->
-<form class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form class="modal fade" id="exampleModal" method="post" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <?php echo csrf_field(); ?>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -81,13 +84,13 @@ ini judul
         <div class="col">
           <div class="input-group input-group-outline is-invalid my-3">
             <label class="form-label">Nama item</label>
-            <input type="email" class="form-control">
+            <input type="text" name="nama_pengeluaran" class="form-control">
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>

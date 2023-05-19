@@ -43,19 +43,21 @@ ini judul
               </tr>
             </thead>
             <tbody>
+              @foreach($items as $item)
               <tr>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">John Michael</h6>
+                      <h6 class="mb-0 text-sm">{{$item->nama_kostumer}}</h6>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <p class="text-xs font-weight-bold mb-0">Manager</p>
+                  <p class="text-xs font-weight-bold mb-0">{{$item->telp}}</p>
                 </td>
-                <td class="align-middle text-center text-sm">
-                  <span class="badge badge-sm bg-gradient-success">Online</span>
+                <td class="align-middle text-sm">
+                  <p class="text-xs font-weight-bold mb-0">{{$item->alamat}}</p>
+                  <!-- <span class="badge badge-sm bg-gradient-success">Online</span> -->
                 </td>
                 <td class="align-middle">
                   <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
@@ -66,6 +68,7 @@ ini judul
                   </a>
                 </td>
               </tr>
+              @endforeach
 
             </tbody>
           </table>
@@ -76,7 +79,8 @@ ini judul
 </div>
 
 <!-- Modal -->
-<form class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form class="modal fade" id="exampleModal" method="post" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  @csrf
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -89,25 +93,25 @@ ini judul
         <div class="col">
           <div class="input-group input-group-outline is-invalid my-3">
             <label class="form-label">Nama Kostumer</label>
-            <input type="text" class="form-control">
+            <input type="text" name="nama_kostumer" class="form-control">
           </div>
         </div>
         <div class="col">
           <div class="input-group input-group-outline is-invalid my-3">
             <label class="form-label">Telp/Wa Kostumer</label>
-            <input type="text" class="form-control">
+            <input type="text" name="telp" class="form-control">
           </div>
         </div>
         <div class="col">
           <div class="input-group input-group-outline is-invalid my-3">
             <label class="form-label">Alamat</label>
-            <input type="text" class="form-control">
+            <input type="text" name="alamat" class="form-control">
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>
