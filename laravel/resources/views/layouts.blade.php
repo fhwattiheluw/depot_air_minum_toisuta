@@ -159,7 +159,7 @@
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
       <div class="container-fluid py-1 px-3">
         @yield('breadcrumb')
-        
+
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
           </div>
@@ -207,6 +207,9 @@
   <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="/assets/js/plugins/chartjs.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+   @yield('js')
+
   <script>
   var ctx = document.getElementById("chart-bars").getContext("2d");
 
@@ -467,6 +470,9 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="/assets/js/material-dashboard.min.js?v=3.1.0"></script>
+
+
+
 </body>
 
 </html>

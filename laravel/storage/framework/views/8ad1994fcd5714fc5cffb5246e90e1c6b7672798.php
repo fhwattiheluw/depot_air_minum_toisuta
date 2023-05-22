@@ -8,6 +8,24 @@
 </nav>
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('js'); ?>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#SelectDataKostumer").hide();
+    $('#pilihTipePenjualan').on('change', function() {
+      if ( this.value == 'beli di tempat' || this.value =="")
+      {
+        $("#SelectDataKostumer").hide();
+      }
+      else
+      {
+        $("#SelectDataKostumer").show();
+      }
+    });
+});
+</script>
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('title'); ?>
 ini judul
 <?php $__env->stopSection(); ?>
@@ -28,7 +46,7 @@ ini judul
               <div class="col-6">
                 <div class="input-group input-group-static is-invalid mb-4">
                   <label for="exampleFormControlSelect1" class="ms-0">Pengantaran</label>
-                  <select class="form-control" id="pilihTipePenjualan">
+                  <select class="form-control" id="pilihTipePenjualan" required>
                     <option>--- Pilih ---</option>
                     <option value="beli di tempat">Beli di tempat</option>
                     <option value="antar motor">Antar motor</option>
@@ -47,7 +65,7 @@ ini judul
                 </div>
                 <div class="input-group input-group-static mb-4">
                   <label for="exampleFormControlSelect1" class="ms-0">Pilih harga satuan</label>
-                  <select class="form-control" id="exampleFormControlSelect1">
+                  <select class="form-control" id="exampleFormControlSelect1" required>
                     <option>--- Pilih ---</option>
                     <option>Rp. 6000</option>
                     <option>Rp. 7000</option>
@@ -55,7 +73,7 @@ ini judul
                 </div>
                 <div class="input-group input-group-static mb-4">
                   <label for="exampleFormControlSelect1" class="ms-0">Tipe pembayaran</label>
-                  <select class="form-control" id="exampleFormControlSelect1">
+                  <select class="form-control" id="exampleFormControlSelect1" required>
                     <option>--- Pilih ---</option>
                     <option>Lunas</option>
                     <option>Bon</option>
@@ -63,7 +81,7 @@ ini judul
                 </div>
                 <div class="input-group input-group-outline is-invalid my-3">
                   <label class="form-label">Jumlah galon</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" required>
                 </div>
                 <div class="input-group input-group-outline my-3">
                   <button type="button" class="btn btn-primary" name="button">Submit</button>

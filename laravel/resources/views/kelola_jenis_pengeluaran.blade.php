@@ -36,7 +36,7 @@ ini judul
           <table class="table align-items-center mb-0">
             <thead>
               <tr>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama pengeluaran</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Item pengeluaran</th>
                 <th class="text-secondary opacity-7"></th>
               </tr>
             </thead>
@@ -51,12 +51,70 @@ ini judul
                   </div>
                 </td>
                 <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                    Edit
+                  <a href="javascript:;" class="text-warning font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$item->id}}" data-toggle="tooltip" data-original-title="Edit user">
+                    <i class="fas fa-edit"></i>Edit
                   </a>
-                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                    Remove
+
+                  <!-- Modal edit -->
+                  <form class="modal fade" method="post" id="modal_edit_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    @csrf
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Edit item pengeluaran</h5>
+                          <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="col">
+                            <div class="input-group input-group-outline is-invalid my-3">
+                              <label class="form-label">Nama item</label>
+                              <input type="text" name="name" class="form-control" value="{{$item->nama_pengeluaran}}">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                  <a href="javascript:;" class="text-primary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal_remove_{{$item->id}}" data-toggle="tooltip" data-original-title="Edit user">
+                    <i class="fas fa-trash"></i>Remove
                   </a>
+                  <!-- Modal edit -->
+                  <form class="modal fade" method="post" id="modal_remove_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    @csrf
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Remove item pengeluaran</h5>
+                          <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="col">
+<p>Apakah anda yakin untuk hapus data ini ?</p>
+                          </div>
+                          <div class="col">
+                            <div class="input-group is-invalid my-3">
+                              <label class="form-label">Item</label>
+                              <input type="text" name="name" class="form-control" value="{{$item->nama_pengeluaran}}" disabled>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Remove</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
                 </td>
               </tr>
               @endforeach

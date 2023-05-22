@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('breadcrumb'); ?>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
@@ -34,28 +36,88 @@ ini judul
           <table class="table align-items-center mb-0">
             <thead>
               <tr>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama pengeluaran</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Item pengeluaran</th>
                 <th class="text-secondary opacity-7"></th>
               </tr>
             </thead>
             <tbody>
+              <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <tr>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">nama pengeluaran</h6>
+                      <h6 class="mb-0 text-sm"><?php echo e($item->nama_pengeluaran); ?></h6>
                     </div>
                   </div>
                 </td>
                 <td class="align-middle">
-                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                    Edit
+                  <a href="javascript:;" class="text-warning font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal_edit_<?php echo e($item->id); ?>" data-toggle="tooltip" data-original-title="Edit user">
+                    <i class="fas fa-edit"></i>Edit
                   </a>
-                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                    Remove
+
+                  <!-- Modal edit -->
+                  <form class="modal fade" method="post" id="modal_edit_<?php echo e($item->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <?php echo csrf_field(); ?>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Edit item pengeluaran</h5>
+                          <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="col">
+                            <div class="input-group input-group-outline is-invalid my-3">
+                              <label class="form-label">Nama item</label>
+                              <input type="text" name="name" class="form-control" value="<?php echo e($item->nama_pengeluaran); ?>">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                  <a href="javascript:;" class="text-primary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal_remove_<?php echo e($item->id); ?>" data-toggle="tooltip" data-original-title="Edit user">
+                    <i class="fas fa-trash"></i>Remove
                   </a>
+                  <!-- Modal edit -->
+                  <form class="modal fade" method="post" id="modal_remove_<?php echo e($item->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <?php echo csrf_field(); ?>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title font-weight-normal" id="exampleModalLabel">Remove item pengeluaran</h5>
+                          <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="col">
+<p>Apakah anda yakin untuk hapus data ini ?</p>
+                          </div>
+                          <div class="col">
+                            <div class="input-group is-invalid my-3">
+                              <label class="form-label">Item</label>
+                              <input type="text" name="name" class="form-control" value="<?php echo e($item->nama_pengeluaran); ?>" disabled>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Remove</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
                 </td>
               </tr>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </tbody>
           </table>
@@ -66,7 +128,8 @@ ini judul
 </div>
 
 <!-- Modal -->
-<form class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form class="modal fade" id="exampleModal" method="post" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <?php echo csrf_field(); ?>
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -79,13 +142,13 @@ ini judul
         <div class="col">
           <div class="input-group input-group-outline is-invalid my-3">
             <label class="form-label">Nama item</label>
-            <input type="email" class="form-control">
+            <input type="text" name="nama_pengeluaran" class="form-control">
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </div>
