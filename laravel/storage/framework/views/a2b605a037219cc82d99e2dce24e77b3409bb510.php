@@ -11,7 +11,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('title'); ?>
-Ini judul
+Kelola user | SIM DEPOT
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('konten'); ?>

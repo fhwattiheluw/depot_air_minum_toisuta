@@ -34,10 +34,7 @@ class AkunController extends Controller
 
     // flashdata
     $request->session()->flash('status', 'Task was successful!');
-
     return redirect(route('user.kelola'));
-
-    // return back()->withErrors(['login' => 'Email atau password salah']);
   }
 
   public function remove(Request $request,$id)

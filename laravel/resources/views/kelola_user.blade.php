@@ -11,7 +11,7 @@
 @endsection
 
 @section('title')
-Ini judul
+Kelola user | SIM DEPOT
 @endsection
 
 @section('konten')
