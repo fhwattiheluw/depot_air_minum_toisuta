@@ -76,7 +76,7 @@ class AkunController extends Controller
     // model update
     $data_update = array('email' => $request->input('email'),
     'name' => $request->input('name'),
-    'password' => $request->input('password')
+    'password' => bcrypt($request->input('password'))
   );
   User::where('id', $id)->update($data_update);
 

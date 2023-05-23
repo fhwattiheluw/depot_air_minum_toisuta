@@ -10,6 +10,19 @@
 </nav>
 @endsection
 
+@section('js')
+<script type="text/javascript">
+$(function() {
+  // setTimeout() function will be fired after page is loaded
+  // it will wait for 5 sec. and then will fire
+  // setTimeout(function() {
+  //     $("#alert").hide('blind', {}, 500)
+  // }, 5000);
+  $("#alert").delay(1500).fadeOut('slow');
+});
+</script>
+@endsection
+
 @section('title')
 Kelola user | SIM DEPOT
 @endsection
@@ -18,7 +31,7 @@ Kelola user | SIM DEPOT
 <div class="row">
   @if ($errors->any())
   <div class="col">
-    <div class="alert alert-warning text-white" role="alert">
+    <div class="alert alert-warning text-white" role="alert" id="alert">
       <span class="alert-icon align-middle">
         <i class="fas fa-exclamation-triangle"></i>
       </span>
@@ -29,7 +42,7 @@ Kelola user | SIM DEPOT
 
   @if(session()->has('status'))
   <div class="col">
-    <div class="alert alert-success text-white" role="alert">
+    <div class="alert alert-success text-white" role="alert" id="alert">
       <span class="alert-icon align-middle">
         <i class="fas fa-thumbs-up"></i>
       </span>
