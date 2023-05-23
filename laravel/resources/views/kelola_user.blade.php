@@ -16,6 +16,28 @@ Ini judul
 
 @section('konten')
 <div class="row">
+  @if ($errors->any())
+  <div class="col">
+    <div class="alert alert-warning text-white" role="alert">
+      <span class="alert-icon align-middle">
+        <i class="fas fa-exclamation-triangle"></i>
+      </span>
+      <span class="alert-text"><strong>Warning!</strong> Periksa kembali inputan anda</span>
+    </div>
+  </div>
+  @endif
+
+  @if(session()->has('status'))
+  <div class="col">
+    <div class="alert alert-success text-white" role="alert">
+      <span class="alert-icon align-middle">
+        <i class="fas fa-thumbs-up"></i>
+      </span>
+      <span class="alert-text"><strong>Success!</strong> Data telah berhasil di perbaharui</span>
+    </div>
+  </div>
+  @endif
+
   <div class="col-12">
     <div class="card my-4">
       <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -64,7 +86,7 @@ Ini judul
                   </a>
 
                   <!-- Modal edit -->
-                  <form class="modal fade" method="post" id="modal_edit_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <form action="{{route('user.update',['id' => Crypt::encryptString($item->id)])}}" class="modal fade" method="post" id="modal_edit_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     @csrf
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -76,22 +98,31 @@ Ini judul
                         </div>
                         <div class="modal-body">
                           <div class="col">
-                            <div class="input-group input-group-outline is-invalid my-3">
+                            <div class="input-group input-group-outline @error('name') is-invalid @enderror my-3">
                               <label class="form-label">Nama</label>
-                              <input type="text" name="name" class="form-control" value="{{$item->name}}">
+                              <input type="text" name="name" class="form-control" value="{{old('name')}} {{$item->name}}">
                             </div>
+                            @error('name')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                           </div>
                           <div class="col">
-                            <div class="input-group input-group-outline is-invalid my-3">
+                            <div class="input-group input-group-outline @error('email') is-invalid @enderror my-3">
                               <label class="form-label">Username</label>
-                              <input type="email" name="email" class="form-control"  value="{{$item->email}}">
+                              <input type="email" name="email" class="form-control" value="{{old('email')}} {{$item->email}}">
                             </div>
+                            @error('email')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                           </div>
                           <div class="col">
-                            <div class="input-group input-group-outline is-invalid my-3">
+                            <div class="input-group input-group-outline @error('password') is-invalid @enderror my-3">
                               <label class="form-label">Kata sandi</label>
-                              <input type="text" name="password" class="form-control">
+                              <input type="text" name="password" class="form-control" value="{{old('password')}}">
                             </div>
+                            @error('password')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -105,8 +136,8 @@ Ini judul
                   <a href="javascript:;" class="text-primary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal_remove_{{$item->id}}" data-toggle="tooltip" data-original-title="Edit user">
                     <i class="fas fa-trash"></i>Remove
                   </a>
-                  <!-- Modal edit -->
-                  <form class="modal fade" method="post" id="modal_remove_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <!-- Modal remove -->
+                  <form action="{{route('user.remove',['id' => Crypt::encryptString($item->id)])}}" class="modal fade" method="post" id="modal_remove_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     @csrf
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -118,21 +149,14 @@ Ini judul
                         </div>
                         <div class="modal-body">
                           <div class="col">
-<p>Apakah anda yakin untuk hapus data ini ?</p>
+                            <p>Apakah anda yakin untuk hapus data ini ?</p>
                           </div>
                           <div class="col">
-                            <div class="input-group is-invalid my-3">
+                            <div class="input-group  my-3">
                               <label class="form-label">Nama</label>
                               <input type="text" name="name" class="form-control" value="{{$item->name}}" disabled>
                             </div>
                           </div>
-                          <div class="col">
-                            <div class="input-group  is-invalid my-3">
-                              <label class="form-label">Username</label>
-                              <input type="email" name="email" class="form-control"  value="{{$item->email}}" disabled>
-                            </div>
-                          </div>
-
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
@@ -168,22 +192,31 @@ Ini judul
       </div>
       <div class="modal-body">
         <div class="col">
-          <div class="input-group input-group-outline is-invalid my-3">
+          <div class="input-group input-group-outline @error('name') is-invalid @enderror my-3">
             <label class="form-label">Nama</label>
-            <input type="text" name="name" class="form-control">
+            <input type="text" name="name" class="form-control" value="{{old('name')}}">
           </div>
+          @error('name')
+          <p class="text-danger">{{ $message }}</p>
+          @enderror
         </div>
         <div class="col">
-          <div class="input-group input-group-outline is-invalid my-3">
+          <div class="input-group input-group-outline @error('email') is-invalid @enderror my-3">
             <label class="form-label">Username</label>
-            <input type="email" name="email" class="form-control">
+            <input type="email" name="email" class="form-control" value="{{old('email')}}">
           </div>
+          @error('email')
+          <p class="text-danger">{{ $message }}</p>
+          @enderror
         </div>
         <div class="col">
-          <div class="input-group input-group-outline is-invalid my-3">
+          <div class="input-group input-group-outline @error('password') is-invalid @enderror my-3">
             <label class="form-label">Kata sandi</label>
-            <input type="text" name="password" class="form-control">
+            <input type="text" name="password" class="form-control" value="{{old('password')}}">
           </div>
+          @error('password')
+          <p class="text-danger">{{ $message }}</p>
+          @enderror
         </div>
       </div>
       <div class="modal-footer">
