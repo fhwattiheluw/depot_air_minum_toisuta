@@ -106,7 +106,7 @@ ini judul
                         </div>
                         <div class="modal-body">
                           <div class="col">
-                            <div class="input-group input-group-outline @error('nama_pengeluaran') is-invalid @enderror my-3">
+                            <div class="input-group input-group-outline @error('nama_pengeluaran') is-invalid @enderror my-3 is-filled">
                               <label class="form-label">Nama item</label>
                               <input type="text" name="nama_pengeluaran" class="form-control" value="{{$item->nama_pengeluaran}} {{old('nama_pengeluaran')}}">
                             </div>

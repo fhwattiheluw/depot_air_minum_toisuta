@@ -111,7 +111,7 @@ Kelola user | SIM DEPOT
                         </div>
                         <div class="modal-body">
                           <div class="col">
-                            <div class="input-group input-group-outline @error('name') is-invalid @enderror my-3">
+                            <div class="input-group input-group-outline @error('name') is-invalid @enderror my-3 is-filled">
                               <label class="form-label">Nama</label>
                               <input type="text" name="name" class="form-control" value="{{old('name')}} {{$item->name}}">
                             </div>
@@ -120,7 +120,7 @@ Kelola user | SIM DEPOT
                             @enderror
                           </div>
                           <div class="col">
-                            <div class="input-group input-group-outline @error('email') is-invalid @enderror my-3">
+                            <div class="input-group input-group-outline @error('email') is-invalid @enderror my-3 is-filled">
                               <label class="form-label">Username</label>
                               <input type="email" name="email" class="form-control" value="{{old('email')}} {{$item->email}}">
                             </div>

@@ -118,7 +118,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?> my-3">
+unset($__errorArgs, $__bag); ?> my-3 is-filled">
                               <label class="form-label">Nama</label>
                               <input type="text" name="name" class="form-control" value="<?php echo e(old('name')); ?> <?php echo e($item->name); ?>">
                             </div>
@@ -141,7 +141,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?> my-3">
+unset($__errorArgs, $__bag); ?> my-3 is-filled">
                               <label class="form-label">Username</label>
                               <input type="email" name="email" class="form-control" value="<?php echo e(old('email')); ?> <?php echo e($item->email); ?>">
                             </div>

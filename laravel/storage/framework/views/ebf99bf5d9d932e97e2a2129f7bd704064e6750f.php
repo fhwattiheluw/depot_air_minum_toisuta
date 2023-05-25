@@ -113,7 +113,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?> my-3">
+unset($__errorArgs, $__bag); ?> my-3 is-filled">
                               <label class="form-label">Nama item</label>
                               <input type="text" name="nama_pengeluaran" class="form-control" value="<?php echo e($item->nama_pengeluaran); ?> <?php echo e(old('nama_pengeluaran')); ?>">
                             </div>
