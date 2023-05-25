@@ -16,16 +16,18 @@ class KostumerController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-        'nama_kostumer' => 'required',
+        'nama_kostumer' => 'required|unique:kostumers,nama_kostumer',
         'alamat' => 'required',
-        'telp' => 'required'
+        'telp' => 'required|numeric'
       ]);
       $item = new Kostumer;
       $item->nama_kostumer = $request->nama_kostumer;
       $item->alamat = $request->alamat;
       $item->telp = $request->telp;
       $item->save();
-
+      // redirect kembali
+      // flashdata
+      $request->session()->flash('status', 'Task was successful!');
       return redirect(route('kostumer.kelola'));
     }
 }
