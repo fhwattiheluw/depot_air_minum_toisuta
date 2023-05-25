@@ -87,9 +87,11 @@ ini judul
                   </div>
                 </td>
                 <td class="align-middle">
+                  <?php if($item->id != 1): ?>
                   <a href="javascript:;" class="text-warning font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal_edit_<?php echo e($item->id); ?>" data-toggle="tooltip" data-original-title="Edit user">
                     <i class="fas fa-edit"></i>Edit
                   </a>
+
 
                   <!-- Modal edit -->
                   <form action="<?php echo e(route('pengeluaran.update',['id' => Crypt::encryptString($item->id)])); ?>" class="modal fade" method="get" id="modal_edit_<?php echo e($item->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -120,8 +122,8 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-    <small class="text-danger"><?php echo e($message); ?></small>
-<?php unset($message);
+                            <small class="text-danger"><?php echo e($message); ?></small>
+                            <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
@@ -168,6 +170,7 @@ unset($__errorArgs, $__bag); ?>
                       </div>
                     </div>
                   </form>
+                  <?php endif; ?>
                 </td>
               </tr>
               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -209,8 +212,8 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-<small class="text-danger"><?php echo e($message); ?></small>
-<?php unset($message);
+          <small class="text-danger"><?php echo e($message); ?></small>
+          <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>

@@ -87,9 +87,11 @@ ini judul
                   </div>
                 </td>
                 <td class="align-middle">
+                  @if($item->id != 1)
                   <a href="javascript:;" class="text-warning font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal_edit_{{$item->id}}" data-toggle="tooltip" data-original-title="Edit user">
                     <i class="fas fa-edit"></i>Edit
                   </a>
+
 
                   <!-- Modal edit -->
                   <form action="{{route('pengeluaran.update',['id' => Crypt::encryptString($item->id)])}}" class="modal fade" method="get" id="modal_edit_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -109,8 +111,8 @@ ini judul
                               <input type="text" name="nama_pengeluaran" class="form-control" value="{{$item->nama_pengeluaran}} {{old('nama_pengeluaran')}}">
                             </div>
                             @error('nama_pengeluaran')
-    <small class="text-danger">{{ $message }}</small>
-@enderror
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -154,6 +156,7 @@ ini judul
                       </div>
                     </div>
                   </form>
+                  @endif
                 </td>
               </tr>
               @endforeach
@@ -184,8 +187,8 @@ ini judul
             <input type="text" name="nama_pengeluaran" class="form-control" value="{{old('nama_pengeluaran')}}">
           </div>
           @error('nama_pengeluaran')
-<small class="text-danger">{{ $message }}</small>
-@enderror
+          <small class="text-danger">{{ $message }}</small>
+          @enderror
         </div>
       </div>
       <div class="modal-footer">
