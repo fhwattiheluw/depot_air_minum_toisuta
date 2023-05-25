@@ -39,7 +39,7 @@ class PengeluaranController extends Controller
       $id =Crypt::decryptString($id);
       // // validate
       $this->validate($request, [
-        'nama_pengeluaran' => 'required'
+        'nama_pengeluaran' => 'required|unique:pengeluarans,nama_pengeluaran'
       ]);
       // model update
       $data = array('nama_pengeluaran' => $request->nama_pengeluaran);
@@ -54,7 +54,7 @@ class PengeluaranController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-        'nama_pengeluaran' => 'required'
+        'nama_pengeluaran' => 'required|unique:pengeluarans,nama_pengeluaran'
       ]);
       $item = new Pengeluaran();
       $item->nama_pengeluaran = $request->nama_pengeluaran;
