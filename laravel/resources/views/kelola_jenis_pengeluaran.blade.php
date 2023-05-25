@@ -10,12 +10,48 @@
 </nav>
 @endsection
 
+@section('js')
+<script type="text/javascript">
+$(function() {
+  // setTimeout() function will be fired after page is loaded
+  // it will wait for 5 sec. and then will fire
+  // setTimeout(function() {
+  //     $("#alert").hide('blind', {}, 500)
+  // }, 5000);
+  $("#alert").delay(1500).fadeOut('slow');
+});
+</script>
+@endsection
+
 @section('title')
 ini judul
 @endsection
 
 @section('konten')
 <div class="row">
+
+  @if ($errors->any())
+  <div class="col">
+    <div class="alert alert-warning text-white" role="alert" id="alert">
+      <span class="alert-icon align-middle">
+        <i class="fas fa-exclamation-triangle"></i>
+      </span>
+      <span class="alert-text"><strong>Warning!</strong> Periksa kembali inputan anda</span>
+    </div>
+  </div>
+  @endif
+
+  @if(session()->has('status'))
+  <div class="col">
+    <div class="alert alert-success text-white" role="alert" id="alert">
+      <span class="alert-icon align-middle">
+        <i class="fas fa-thumbs-up"></i>
+      </span>
+      <span class="alert-text"><strong>Success!</strong> Data telah berhasil di perbaharui</span>
+    </div>
+  </div>
+  @endif
+
   <div class="col-12">
     <div class="card my-4">
       <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -56,7 +92,7 @@ ini judul
                   </a>
 
                   <!-- Modal edit -->
-                  <form class="modal fade" method="post" id="modal_edit_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <form action="{{route('pengeluaran.update',['id' => Crypt::encryptString($item->id)])}}" class="modal fade" method="get" id="modal_edit_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     @csrf
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -68,10 +104,13 @@ ini judul
                         </div>
                         <div class="modal-body">
                           <div class="col">
-                            <div class="input-group input-group-outline is-invalid my-3">
+                            <div class="input-group input-group-outline @error('nama_pengeluaran') is-invalid @enderror my-3">
                               <label class="form-label">Nama item</label>
-                              <input type="text" name="name" class="form-control" value="{{$item->nama_pengeluaran}}">
+                              <input type="text" name="nama_pengeluaran" class="form-control" value="{{$item->nama_pengeluaran}} {{old('nama_pengeluaran')}}">
                             </div>
+                            @error('nama_pengeluaran')
+    <small class="text-danger">{{ $message }}</small>
+@enderror
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -85,8 +124,8 @@ ini judul
                   <a href="javascript:;" class="text-primary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal_remove_{{$item->id}}" data-toggle="tooltip" data-original-title="Edit user">
                     <i class="fas fa-trash"></i>Remove
                   </a>
-                  <!-- Modal edit -->
-                  <form class="modal fade" method="post" id="modal_remove_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <!-- Modal remove -->
+                  <form action="{{Route('pengeluaran.remove',['id' => Crypt::encryptString($item->id)])}}" class="modal fade" method="get" id="modal_remove_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     @csrf
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -98,7 +137,7 @@ ini judul
                         </div>
                         <div class="modal-body">
                           <div class="col">
-<p>Apakah anda yakin untuk hapus data ini ?</p>
+                            <p>Apakah anda yakin untuk hapus data ini ?</p>
                           </div>
                           <div class="col">
                             <div class="input-group is-invalid my-3">
@@ -140,10 +179,13 @@ ini judul
       </div>
       <div class="modal-body">
         <div class="col">
-          <div class="input-group input-group-outline is-invalid my-3">
+          <div class="input-group input-group-outline @error('nama_pengeluaran') is-invalid @enderror my-3">
             <label class="form-label">Nama item</label>
-            <input type="text" name="nama_pengeluaran" class="form-control">
+            <input type="text" name="nama_pengeluaran" class="form-control" value="{{old('nama_pengeluaran')}}">
           </div>
+          @error('nama_pengeluaran')
+<small class="text-danger">{{ $message }}</small>
+@enderror
         </div>
       </div>
       <div class="modal-footer">

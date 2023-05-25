@@ -21,6 +21,8 @@ Route::post('/user/remove/{id?}',[AkunController::class, 'remove'])->name('user.
 
 Route::get('/pengeluaran/kelola',[PengeluaranController::class, 'index'])->name('pengeluaran.kelola');
 Route::post('/pengeluaran/kelola',[PengeluaranController::class, 'store'])->name('pengeluaran.store');
+Route::get('/pengeluaran/update/{id}',[PengeluaranController::class, 'update'])->name('pengeluaran.update');
+Route::get('/pengeluaran/remove/{id}',[PengeluaranController::class, 'remove'])->name('pengeluaran.remove');
 
 Route::get('/kostumer/kelola',[KostumerController::class, 'index'])->name('kostumer.kelola');
 Route::post('/kostumer/kelola',[KostumerController::class, 'store'])->name('kostumer.store');

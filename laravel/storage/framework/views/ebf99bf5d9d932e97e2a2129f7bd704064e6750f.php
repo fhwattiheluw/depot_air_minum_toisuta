@@ -10,12 +10,48 @@
 </nav>
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('js'); ?>
+<script type="text/javascript">
+$(function() {
+  // setTimeout() function will be fired after page is loaded
+  // it will wait for 5 sec. and then will fire
+  // setTimeout(function() {
+  //     $("#alert").hide('blind', {}, 500)
+  // }, 5000);
+  $("#alert").delay(1500).fadeOut('slow');
+});
+</script>
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('title'); ?>
 ini judul
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('konten'); ?>
 <div class="row">
+
+  <?php if($errors->any()): ?>
+  <div class="col">
+    <div class="alert alert-warning text-white" role="alert" id="alert">
+      <span class="alert-icon align-middle">
+        <i class="fas fa-exclamation-triangle"></i>
+      </span>
+      <span class="alert-text"><strong>Warning!</strong> Periksa kembali inputan anda</span>
+    </div>
+  </div>
+  <?php endif; ?>
+
+  <?php if(session()->has('status')): ?>
+  <div class="col">
+    <div class="alert alert-success text-white" role="alert" id="alert">
+      <span class="alert-icon align-middle">
+        <i class="fas fa-thumbs-up"></i>
+      </span>
+      <span class="alert-text"><strong>Success!</strong> Data telah berhasil di perbaharui</span>
+    </div>
+  </div>
+  <?php endif; ?>
+
   <div class="col-12">
     <div class="card my-4">
       <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -56,7 +92,7 @@ ini judul
                   </a>
 
                   <!-- Modal edit -->
-                  <form class="modal fade" method="post" id="modal_edit_<?php echo e($item->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <form action="<?php echo e(route('pengeluaran.update',['id' => Crypt::encryptString($item->id)])); ?>" class="modal fade" method="get" id="modal_edit_<?php echo e($item->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <?php echo csrf_field(); ?>
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -68,10 +104,27 @@ ini judul
                         </div>
                         <div class="modal-body">
                           <div class="col">
-                            <div class="input-group input-group-outline is-invalid my-3">
+                            <div class="input-group input-group-outline <?php $__errorArgs = ['nama_pengeluaran'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> my-3">
                               <label class="form-label">Nama item</label>
-                              <input type="text" name="name" class="form-control" value="<?php echo e($item->nama_pengeluaran); ?>">
+                              <input type="text" name="nama_pengeluaran" class="form-control" value="<?php echo e($item->nama_pengeluaran); ?> <?php echo e(old('nama_pengeluaran')); ?>">
                             </div>
+                            <?php $__errorArgs = ['nama_pengeluaran'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+    <small class="text-danger"><?php echo e($message); ?></small>
+<?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -85,8 +138,8 @@ ini judul
                   <a href="javascript:;" class="text-primary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal_remove_<?php echo e($item->id); ?>" data-toggle="tooltip" data-original-title="Edit user">
                     <i class="fas fa-trash"></i>Remove
                   </a>
-                  <!-- Modal edit -->
-                  <form class="modal fade" method="post" id="modal_remove_<?php echo e($item->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <!-- Modal remove -->
+                  <form action="<?php echo e(Route('pengeluaran.remove',['id' => Crypt::encryptString($item->id)])); ?>" class="modal fade" method="get" id="modal_remove_<?php echo e($item->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <?php echo csrf_field(); ?>
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -98,7 +151,7 @@ ini judul
                         </div>
                         <div class="modal-body">
                           <div class="col">
-<p>Apakah anda yakin untuk hapus data ini ?</p>
+                            <p>Apakah anda yakin untuk hapus data ini ?</p>
                           </div>
                           <div class="col">
                             <div class="input-group is-invalid my-3">
@@ -140,10 +193,27 @@ ini judul
       </div>
       <div class="modal-body">
         <div class="col">
-          <div class="input-group input-group-outline is-invalid my-3">
+          <div class="input-group input-group-outline <?php $__errorArgs = ['nama_pengeluaran'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> my-3">
             <label class="form-label">Nama item</label>
-            <input type="text" name="nama_pengeluaran" class="form-control">
+            <input type="text" name="nama_pengeluaran" class="form-control" value="<?php echo e(old('nama_pengeluaran')); ?>">
           </div>
+          <?php $__errorArgs = ['nama_pengeluaran'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+<small class="text-danger"><?php echo e($message); ?></small>
+<?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
         </div>
       </div>
       <div class="modal-footer">
