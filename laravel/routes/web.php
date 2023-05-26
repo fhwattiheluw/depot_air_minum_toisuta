@@ -26,6 +26,8 @@ Route::get('/pengeluaran/remove/{id}',[PengeluaranController::class, 'remove'])-
 
 Route::get('/kostumer/kelola',[KostumerController::class, 'index'])->name('kostumer.kelola');
 Route::post('/kostumer/kelola',[KostumerController::class, 'store'])->name('kostumer.store');
+Route::post('/kostumer/update/{id}',[KostumerController::class, 'update'])->name('kostumer.update');
+Route::post('/kostumer/remove/{id}',[KostumerController::class, 'remove'])->name('kostumer.remove');
 
 Route::get('/penjualan/input',[PenjualanController::class, 'index'])->name('penjualan.input');
 Route::get('/pengeluaran/form',[PengeluaranController::class, 'form'])->name('pengeluaran.form');

@@ -47,7 +47,7 @@ ini judul
       <span class="alert-icon align-middle">
         <i class="fas fa-thumbs-up"></i>
       </span>
-      <span class="alert-text"><strong>Success!</strong> Data telah berhasil di perbaharui</span>
+      <span class="alert-text"><strong>Success!</strong> {{Session::get('status')}}</span>
     </div>
   </div>
   @endif
@@ -101,7 +101,7 @@ ini judul
                   </a>
 
                   <!-- Modal edit -->
-                  <form class="modal fade" method="post" id="modal_edit_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <form action="{{route('kostumer.update',['id' => Crypt::encryptString($item->id)])}}" class="modal fade" method="post" id="modal_edit_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     @csrf
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -115,19 +115,20 @@ ini judul
                           <div class="col">
                             <div class="input-group input-group-outline is-invalid my-3 is-filled">
                               <label class="form-label">Nama Kostumer</label>
-                              <input type="text" name="name" class="form-control" value="{{$item->nama_kostumer}}">
+                              <input type="hidden" name="id" class="form-control" value="{{$item->id}}">
+                              <input type="text" name="nama_kostumer" class="form-control" value="{{$item->nama_kostumer}}">
                             </div>
                           </div>
                           <div class="col">
                             <div class="input-group input-group-outline is-invalid my-3 is-filled">
                               <label class="form-label">No. Telp</label>
-                              <input type="text" name="name" class="form-control" value="{{$item->telp}}">
+                              <input type="text" name="telp" class="form-control" value="{{$item->telp}}">
                             </div>
                           </div>
                           <div class="col">
                             <div class="input-group input-group-outline is-invalid my-3 is-filled">
                               <label class="form-label">Alamat</label>
-                              <input type="text" name="name" class="form-control" value="{{$item->alamat}}">
+                              <input type="text" name="alamat" class="form-control" value="{{$item->alamat}}">
                             </div>
                           </div>
                         </div>
@@ -142,8 +143,8 @@ ini judul
                   <a href="javascript:;" class="text-primary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modal_remove_{{$item->id}}" data-toggle="tooltip" data-original-title="Edit user">
                     <i class="fas fa-trash"></i>Remove
                   </a>
-                  <!-- Modal edit -->
-                  <form class="modal fade" method="post" id="modal_remove_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <!-- Modal hapus -->
+                  <form action="{{route('kostumer.remove',['id' => Crypt::encryptString($item->id)])}}" class="modal fade" method="post" id="modal_remove_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     @csrf
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -160,7 +161,7 @@ ini judul
                           <div class="col">
                             <div class="input-group is-invalid my-3">
                               <label class="form-label">Nama Kostumer</label>
-                              <input type="text" name="name" class="form-control" value="{{$item->nama_kostumer}}" disabled>
+                              <input type="text" name="nama_kostumer" class="form-control" value="{{$item->nama_kostumer}}" disabled>
                             </div>
                           </div>
 
