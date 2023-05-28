@@ -29,7 +29,7 @@ ini judul
 
 @section('konten')
 <div class="row">
-  
+
   @if ($errors->any())
   <div class="col">
     <div class="alert alert-warning text-white" role="alert" id="alert">
@@ -101,7 +101,7 @@ ini judul
                   </a>
 
                   <!-- Modal edit -->
-                  <form action="{{route('kostumer.update',['id' => Crypt::encryptString($item->id)])}}" class="modal fade" method="post" id="modal_edit_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <form action="{{route('kostumer.update',['id' => Crypt::encryptString($item->id),'nama_kostumer_old' => $item->nama_kostumer])}}" class="modal fade" method="post" id="modal_edit_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     @csrf
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -113,23 +113,31 @@ ini judul
                         </div>
                         <div class="modal-body">
                           <div class="col">
-                            <div class="input-group input-group-outline is-invalid my-3 is-filled">
+                            <div class="input-group input-group-outline @error('nama_kostumer') is-invalid @enderror my-3 is-filled">
                               <label class="form-label">Nama Kostumer</label>
-                              <input type="hidden" name="id" class="form-control" value="{{$item->id}}">
                               <input type="text" name="nama_kostumer" class="form-control" value="{{$item->nama_kostumer}}">
                             </div>
+                            @error('nama_kostumer')
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                           </div>
                           <div class="col">
-                            <div class="input-group input-group-outline is-invalid my-3 is-filled">
+                            <div class="input-group input-group-outline  @error('telp') is-invalid @enderror my-3 is-filled">
                               <label class="form-label">No. Telp</label>
                               <input type="text" name="telp" class="form-control" value="{{$item->telp}}">
                             </div>
+                            @error('telp')
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                           </div>
                           <div class="col">
-                            <div class="input-group input-group-outline is-invalid my-3 is-filled">
+                            <div class="input-group input-group-outline  @error('alamat') is-invalid @enderror my-3 is-filled">
                               <label class="form-label">Alamat</label>
                               <input type="text" name="alamat" class="form-control" value="{{$item->alamat}}">
                             </div>
+                            @error('alamat')
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                           </div>
                         </div>
                         <div class="modal-footer">

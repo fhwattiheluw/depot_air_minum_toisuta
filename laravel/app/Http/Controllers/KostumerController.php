@@ -32,24 +32,32 @@ class KostumerController extends Controller
       return redirect(route('kostumer.kelola'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id,$nama_kostumer_old)
     {
-      
+
       $id =Crypt::decryptString($id);
 
-      $this->validate($request, [
-        'nama_kostumer'=>'required|min:3|max:50',
-        'telp'=>'required|max:50',
-        'alamat'=>'required'
-      ]);
-      
+      if ($request->input('nama_kostumer') == $nama_kostumer_old) {
+        $this->validate($request, [
+          'nama_kostumer'=>'required|min:3|max:50',
+          'telp'=> 'required|numeric',
+          'alamat'=>'required'
+        ]);
+      } else {
+        $this->validate($request, [
+          'nama_kostumer' => 'required|unique:kostumers,nama_kostumer',
+          'telp'=>'required|numeric',
+          'alamat'=>'required'
+        ]);
+      }
+
       $item = Kostumer::find($id);
       $item->update([
         'nama_kostumer' => $request->nama_kostumer,
         'telp' => $request->telp,
         'alamat' => $request->alamat
       ]);
-      
+
       return redirect(route('kostumer.kelola'))->with('status','Berhasil update data Kostumer');
 
     }
