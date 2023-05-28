@@ -12,6 +12,17 @@
 
 @section('js')
 <script type="text/javascript">
+$(function() {
+  // setTimeout() function will be fired after page is loaded
+  // it will wait for 5 sec. and then will fire
+  // setTimeout(function() {
+  //     $("#alert").hide('blind', {}, 500)
+  // }, 5000);
+  $("#alert").delay(1500).fadeOut('slow');
+});
+</script>
+
+<script type="text/javascript">
 $(document).ready(function(){
   $("#SelectDataKostumer").hide();
     $('#pilihTipePenjualan').on('change', function() {
@@ -34,6 +45,27 @@ ini judul
 
 @section('konten')
 <div class="row">
+  @if(session()->has('success'))
+  <div class="col">
+    <div class="alert alert-success text-white" role="alert" id="alert">
+      <span class="alert-icon align-middle">
+        <i class="fas fa-thumbs-up"></i>
+      </span>
+      <span class="alert-text"><strong>Success!</strong> {{Session::get('success')}}</span>
+    </div>
+  </div>
+  @endif
+  @if ($errors->any())
+    <div class="col">
+      <div class="alert alert-danger text-white">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+    </div>
+@endif
   <div class="col-12">
     <div class="card my-4">
       <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -44,11 +76,12 @@ ini judul
       <div class="card-body px-0 pb-2">
         <div class="row">
           <div class="col p-4">
-            <form class="row justify-content-md-center">
+            <form action="{{Route('penjualan.insert')}}" method="post" class="row justify-content-md-center">
+              @csrf
               <div class="col-6">
                 <div class="input-group input-group-static is-invalid mb-4">
                   <label for="exampleFormControlSelect1" class="ms-0">Pengantaran</label>
-                  <select class="form-control" id="pilihTipePenjualan" required>
+                  <select class="form-control" name="tipe_penjualan" id="pilihTipePenjualan">
                     <option>--- Pilih ---</option>
                     <option value="beli di tempat">Beli di tempat</option>
                     <option value="antar motor">Antar motor</option>
@@ -57,36 +90,34 @@ ini judul
                 </div>
                 <div id="SelectDataKostumer" class="input-group input-group-static">
                   <label for="exampleFormControlSelect2" class="ms-0">Pilih Konsumen</label>
-                  <select multiple="" class="form-control pb-4" id="exampleFormControlSelect2">
-                    <option>supplier1</option>
-                    <option>supplier2</option>
-                    <option>supplier 3</option>
-                    <option>supplier 4</option>
-                    <option>supplier 5</option>
+                  <select multiple="" name="kostumer" class="form-control pb-4" id="exampleFormControlSelect2" >
+                    @foreach($kostumers as $item)
+                    <option value="{{$item->id}}">{{$item->nama_kostumer}}</option>
+                    @endforeach
                   </select>
                 </div>
                 <div class="input-group input-group-static mb-4">
                   <label for="exampleFormControlSelect1" class="ms-0">Pilih harga satuan</label>
-                  <select class="form-control" id="exampleFormControlSelect1" required>
+                  <select class="form-control" name="harga_satuan" id="exampleFormControlSelect1">
                     <option>--- Pilih ---</option>
-                    <option>Rp. 6000</option>
-                    <option>Rp. 7000</option>
+                    <option value="6000">Rp. 6000</option>
+                    <option value="7000">Rp. 7000</option>
                   </select>
                 </div>
                 <div class="input-group input-group-static mb-4">
                   <label for="exampleFormControlSelect1" class="ms-0">Tipe pembayaran</label>
-                  <select class="form-control" id="exampleFormControlSelect1" required>
+                  <select class="form-control" name="pembayaran" id="exampleFormControlSelect1">
                     <option>--- Pilih ---</option>
-                    <option>Lunas</option>
-                    <option>Bon</option>
+                    <option value="lunas">Lunas</option>
+                    <option value="bon">Bon</option>
                   </select>
                 </div>
-                <div class="input-group input-group-outline is-invalid my-3">
+                <div class="input-group input-group-outline my-3">
                   <label class="form-label">Jumlah galon</label>
-                  <input type="text" class="form-control" required>
+                  <input type="number" name="jumlah" class="form-control" >
                 </div>
                 <div class="input-group input-group-outline my-3">
-                  <button type="button" class="btn btn-primary" name="button">Submit</button>
+                  <button type="submit" class="btn btn-primary" name="button">Submit</button>
                 </div>
               </div>
             </form>

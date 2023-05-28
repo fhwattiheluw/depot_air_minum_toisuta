@@ -30,6 +30,8 @@ Route::post('/kostumer/update/{id}/{nama_kostumer_old}',[KostumerController::cla
 Route::post('/kostumer/remove/{id}',[KostumerController::class, 'remove'])->name('kostumer.remove');
 
 Route::get('/penjualan/input',[PenjualanController::class, 'index'])->name('penjualan.input');
+Route::post('/penjualan/input',[PenjualanController::class, 'insert'])->name('penjualan.insert');
+
 Route::get('/pengeluaran/form',[PengeluaranController::class, 'form'])->name('pengeluaran.form');
 
 Route::get('/peminjaman/form',[PeminjamanGalonController::class, 'form'])->name('peminjaman.form');

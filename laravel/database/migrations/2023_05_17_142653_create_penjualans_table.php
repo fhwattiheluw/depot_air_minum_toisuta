@@ -19,10 +19,11 @@ class CreatePenjualansTable extends Migration
             $table->string('tipe_penjualan',100);
             $table->bigInteger('harga_satuan');
             $table->bigInteger('jumlah');
+            $table->bigInteger('total_harga');
             $table->enum('pembayaran', ['lunas', 'bon']);
             $table->timestamps($precision = 0);
-            $table->unsignedBigInteger('id_kostumer');
-             $table->foreign('id_kostumer')->references('id')->on('kostumers');
+            $table->bigInteger('id_kostumer')->nullable($value = true);
+            // $table->foreign('id_kostumer')->references('id')->on('kostumers');
 
         });
     }
