@@ -29,6 +29,7 @@ class DetailPengeluaranController extends Controller
             'harga_satuan' => 'required|numeric',
             'keterangan'=> 'required|max:200',
             'tanggal'=> 'required|date',
+            'nota' => 'image|mimes:jpeg,jpg,png',
         ]);
         if ($image){
             $image_name = time().'.'.$image->getClientOriginalExtension();
