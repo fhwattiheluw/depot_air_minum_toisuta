@@ -38,6 +38,7 @@ Route::post('/detail_pengeluaran/form',[DetailPengeluaranController::class, 'sto
 
 
 Route::get('/peminjaman/form',[PeminjamanGalonController::class, 'form'])->name('peminjaman.form');
+Route::post('/peminjaman/form',[PeminjamanGalonController::class, 'insert'])->name('peminjaman.insert');
 
 Route::get('/rekapan/semua',[RekapanController::class, 'semua'])->name('rekapan.semua');
 Route::get('/rekapan/pengantaran',[RekapanController::class, 'pengantaran'])->name('rekapan.pengantaran');
