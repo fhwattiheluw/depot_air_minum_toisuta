@@ -14,7 +14,7 @@ class PeminjamanGalonController extends Controller
 {
   public function form()
   {
-    $data['peminjaman'] = PeminjamanGalon::paginate(2);
+    $data['peminjaman'] = PeminjamanGalon::paginate(20);
     $data['kostumer'] = Kostumer::all();
     return view('form_pinjaman_galon',$data);
   }
