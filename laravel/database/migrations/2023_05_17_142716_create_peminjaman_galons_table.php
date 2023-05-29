@@ -15,8 +15,9 @@ class CreatePeminjamanGalonsTable extends Migration
     {
         Schema::create('peminjaman_galons', function (Blueprint $table) {
             $table->id()->autoIncrement();
+            $table->date('tanggal_pinjam');
             $table->bigInteger('jumlah_galon');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable($value = true)->default(NULL);
             $table->timestamps();
             $table->unsignedBigInteger('id_kostumer');
             $table->foreign('id_kostumer')->references('id')->on('kostumers');

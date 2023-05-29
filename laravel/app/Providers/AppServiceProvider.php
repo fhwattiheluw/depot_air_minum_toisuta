@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // load Bootstrap 5
+        // Paginator::useBootstrap();
     }
 }
