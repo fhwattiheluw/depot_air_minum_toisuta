@@ -29,7 +29,7 @@ ini judul
 
 <?php $__env->startSection('konten'); ?>
 <div class="row">
-  
+
   <?php if($errors->any()): ?>
   <div class="col">
     <div class="alert alert-warning text-white" role="alert" id="alert">
@@ -101,7 +101,7 @@ ini judul
                   </a>
 
                   <!-- Modal edit -->
-                  <form action="<?php echo e(route('kostumer.update',['id' => Crypt::encryptString($item->id)])); ?>" class="modal fade" method="post" id="modal_edit_<?php echo e($item->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <form action="<?php echo e(route('kostumer.update',['id' => Crypt::encryptString($item->id),'nama_kostumer_old' => $item->nama_kostumer])); ?>" class="modal fade" method="post" id="modal_edit_<?php echo e($item->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <?php echo csrf_field(); ?>
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -113,23 +113,73 @@ ini judul
                         </div>
                         <div class="modal-body">
                           <div class="col">
-                            <div class="input-group input-group-outline is-invalid my-3 is-filled">
+                            <div class="input-group input-group-outline <?php $__errorArgs = ['nama_kostumer'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> my-3 is-filled">
                               <label class="form-label">Nama Kostumer</label>
-                              <input type="hidden" name="id" class="form-control" value="<?php echo e($item->id); ?>">
                               <input type="text" name="nama_kostumer" class="form-control" value="<?php echo e($item->nama_kostumer); ?>">
                             </div>
+                            <?php $__errorArgs = ['nama_kostumer'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <small class="text-danger"><?php echo e($message); ?></small>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                           </div>
                           <div class="col">
-                            <div class="input-group input-group-outline is-invalid my-3 is-filled">
+                            <div class="input-group input-group-outline  <?php $__errorArgs = ['telp'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> my-3 is-filled">
                               <label class="form-label">No. Telp</label>
                               <input type="text" name="telp" class="form-control" value="<?php echo e($item->telp); ?>">
                             </div>
+                            <?php $__errorArgs = ['telp'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <small class="text-danger"><?php echo e($message); ?></small>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                           </div>
                           <div class="col">
-                            <div class="input-group input-group-outline is-invalid my-3 is-filled">
+                            <div class="input-group input-group-outline  <?php $__errorArgs = ['alamat'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> my-3 is-filled">
                               <label class="form-label">Alamat</label>
                               <input type="text" name="alamat" class="form-control" value="<?php echo e($item->alamat); ?>">
                             </div>
+                            <?php $__errorArgs = ['alamat'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <small class="text-danger"><?php echo e($message); ?></small>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                           </div>
                         </div>
                         <div class="modal-footer">

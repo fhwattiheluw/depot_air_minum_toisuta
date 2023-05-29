@@ -9,6 +9,7 @@ use App\Http\Controllers\KostumerController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PeminjamanGalonController;
 use App\Http\Controllers\RekapanController;
+use App\Http\Controllers\DetailPengeluaranController;
 
 Route::get('/',[LoginController::class, 'index'])->name('login');
 
@@ -32,7 +33,9 @@ Route::post('/kostumer/remove/{id}',[KostumerController::class, 'remove'])->name
 Route::get('/penjualan/input',[PenjualanController::class, 'index'])->name('penjualan.input');
 Route::post('/penjualan/input',[PenjualanController::class, 'insert'])->name('penjualan.insert');
 
-Route::get('/pengeluaran/form',[PengeluaranController::class, 'form'])->name('pengeluaran.form');
+Route::get('/detail_pengeluaran/form',[DetailPengeluaranController::class, 'form'])->name('detail_pengeluaran.form');
+Route::post('/detail_pengeluaran/form',[DetailPengeluaranController::class, 'store'])->name('detail_pengeluaran.store');
+
 
 Route::get('/peminjaman/form',[PeminjamanGalonController::class, 'form'])->name('peminjaman.form');
 

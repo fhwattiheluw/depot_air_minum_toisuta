@@ -14,11 +14,7 @@ class PengeluaranController extends Controller
     {
       $items = Pengeluaran::all();
       return view('kelola_jenis_pengeluaran', ['items'=>$items]);
-    }
 
-    public function form()
-    {
-      return view('form_pengeluaran');
     }
 
     public function remove(Request $request,$id)

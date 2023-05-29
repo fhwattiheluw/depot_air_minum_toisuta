@@ -99,7 +99,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white {{(Request::is('pengeluaran/form') ? 'active bg-gradient-primary' : '')}}" href="{{route('pengeluaran.form')}}">
+          <a class="nav-link text-white {{(Request::is('detail_pengeluaran/form') ? 'active bg-gradient-primary' : '')}}" href="{{route('detail_pengeluaran.form')}}">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
             </div>

@@ -12,8 +12,9 @@ class DetailPengeluaran extends Migration
           $table->id();
           $table->date('tanggal');
           $table->bigInteger('jumlah');
+          $table->bigInteger('harga_satuan');
           $table->text('keterangan');
-          $table->binary('foto');
+          $table->string('nota');
           $table->timestamps($precision = 0);
           $table->unsignedBigInteger('id_pengeluaran');
            $table->foreign('id_pengeluaran')->references('id')->on('pengeluarans');

@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class detail_pengeluaran extends Model
 {
-    use HasFactory;
+    // use HasFactory;
+    protected $table = 'detail_pengeluaran';
+    protected $guarded = ['id'];
 }

@@ -11,12 +11,34 @@
 @endsection
 
 @section('title')
-ini judul
+Form Detail Pengeluaran
 @endsection
 
 @section('konten')
 
       <div class="row">
+        @if(session()->has('success'))
+          <div class="col">
+            <div class="alert alert-success text-white" role="alert" id="alert">
+              <span class="alert-icon align-middle">
+                <i class="fas fa-thumbs-up"></i>
+              </span>
+              <span class="alert-text"><strong>Success!</strong> {{Session::get('success')}}</span>
+            </div>
+          </div>
+          @endif
+          @if ($errors->any())
+            <div class="col">
+              <div class="alert alert-danger text-white">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+            </div>
+        @endif
+
         <div class="col-12">
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -27,35 +49,41 @@ ini judul
             <div class="card-body px-0 pb-2">
               <div class="row">
                 <div class="col p-4">
-                  <form class="row justify-content-md-center">
+                  <form action="{{Route('detail_pengeluaran.store')}}" method="post"  class="row justify-content-md-center" enctype="multipart/form-data">
+                    @csrf
                     <div class="col-lg-6 col-md-6">
                       <div class="input-group input-group-static is-invalid mb-4">
                         <label for="exampleFormControlSelect1" class="ms-0">jenis pengeluaran</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
+                        <select class="form-control" name="id_pengeluaran" id="exampleFormControlSelect1">
                           <option>--- Pilih ---</option>
-                          <option>pengeluaran a</option>
-                          <option>pengeluaran a</option>
-                          <option>pengeluaran a</option>
+                          @foreach($jenis as $jenis)
+                            <option value="{{$jenis->id}}">{{$jenis->nama_pengeluaran}}</option>
+                          @endforeach
                         </select>
+                      </div>
+                      <label class="ms-0">Tanggal</label>
+                      <div class="input-group input-group-outline my-3">
+                        <!-- <label class="form-label">Tanggal</label> -->
+                        <input type="date" name="tanggal" class="form-control">
                       </div>
                       <div class="input-group input-group-outline is-invalid my-3">
                         <label class="form-label">Jumlah</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="jumlah" class="form-control">
                       </div>
                       <div class="input-group input-group-outline is-invalid my-3">
                         <label class="form-label">Harga satuan</label>
-                        <input type="text" class="form-control">
+                        <input type="number" name="harga_satuan" class="form-control">
                       </div>
                       <div class="input-group input-group-outline is-invalid my-3">
-                        <textarea class="form-control" rows="5" placeholder="Ketik keterangan" spellcheck="false"></textarea>
+                        <textarea name="keterangan" class="form-control" rows="5" placeholder="Ketik keterangan" spellcheck="false"></textarea>
                       </div>
                       <label for="">Nota</label>
                       <div class="input-group input-group-outline  is-invalid my-3">
                         <!-- <label class="form-label">Nota</label> -->
-                        <input type="file" class="form-control">
+                        <input type="file" name="nota" class="form-control">
                       </div>
                       <div class="input-group input-group-outline my-3">
-                        <button type="button" class="btn btn-primary" name="button">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                       </div>
                     </div>
                   </form>
