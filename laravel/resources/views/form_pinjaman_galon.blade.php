@@ -10,6 +10,19 @@
 </nav>
 @endsection
 
+@section('js')
+<script type="text/javascript">
+$(function() {
+  // setTimeout() function will be fired after page is loaded
+  // it will wait for 5 sec. and then will fire
+  // setTimeout(function() {
+  //     $("#alert").hide('blind', {}, 500)
+  // }, 5000);
+  $("#alert").delay(1500).fadeOut('slow');
+});
+</script>
+@endsection
+
 @section('title')
 ini judul
 @endsection
@@ -80,7 +93,7 @@ ini judul
                     <i class="fas fa-edit"></i>Edit
                   </a>
                   <!-- Modal -->
-                  <form method="post" class="modal fade" id="modal_edit_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <form method="post" action="{{Route('peminjaman.update',['id' => $item->id])}}" class="modal fade" id="modal_edit_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     @csrf
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -91,25 +104,20 @@ ini judul
                           </button>
                         </div>
                         <div class="modal-body">
-                          <div id="SelectDataKostumer" class="input-group input-group-static">
-                            <label for="exampleFormControlSelect2" class="ms-0">Pilih Konsumen</label>
-                            <select multiple="" name="kostumer" class="form-control pb-4" id="exampleFormControlSelect2">
-                              @foreach($kostumer as $item)
-                              <option value="{{$item->id}}">{{$item->nama_kostumer}}</option>
-                              @endforeach
-                            </select>
+                          <div class="input-group input-group-outline my-3">
+                            <input type="text" class="form-control" disabled value="{{$item->kostumer->nama_kostumer}}">
                           </div>
                           @error('kostumer')
                           <small class="text-danger">{{$message}}</small>
                           @enderror
-                          <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3">
+                          <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3 is-filled">
                             <label class="form-label">Tanggal pinjam</label>
                             <input type="date" class="form-control" name="tanggal" value="{{$item->tanggal_pinjam}}">
                           </div>
                           @error('tanggal')
                           <small class="text-danger">{{$message}}</small>
                           @enderror
-                          <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3">
+                          <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3 is-filled">
                             <label class="form-label">Jumlah galon</label>
                           <input type="number" class="form-control" name="jumlah" value="{{$item->jumlah_galon}}">
                           </div>
@@ -133,7 +141,7 @@ ini judul
                     <i class="fas fa-trash"></i>Remove
                   </a>
                   <!-- Modal -->
-                  <form method="post" class="modal fade" id="modal_remove_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <form method="post" action="{{Route('peminjaman.delete',['id' => $item->id])}}" class="modal fade" id="modal_remove_{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     @csrf
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -144,38 +152,34 @@ ini judul
                           </button>
                         </div>
                         <div class="modal-body">
-                          <div id="SelectDataKostumer" class="input-group input-group-static">
-                            <label for="exampleFormControlSelect2" class="ms-0">Pilih Konsumen</label>
-                            <select multiple="" name="kostumer" class="form-control pb-4" id="exampleFormControlSelect2">
-                              @foreach($kostumer as $item)
-                              <option value="{{$item->id}}">{{$item->nama_kostumer}}</option>
-                              @endforeach
-                            </select>
+                          <p>Apakah anda yakin untuk hapus data ini ?</p>
+                          <div class="input-group input-group-outline my-3">
+                            <input type="text" class="form-control" disabled value="{{$item->kostumer->nama_kostumer}}">
                           </div>
                           @error('kostumer')
                           <small class="text-danger">{{$message}}</small>
                           @enderror
-                          <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3">
+                          <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3 is-filled">
                             <label class="form-label">Tanggal pinjam</label>
-                            <input type="date" class="form-control" name="tanggal">
+                            <input type="date" class="form-control" name="tanggal" value="{{$item->tanggal_pinjam}}" disabled>
                           </div>
                           @error('tanggal')
                           <small class="text-danger">{{$message}}</small>
                           @enderror
-                          <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3">
+                          <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3 is-filled">
                             <label class="form-label">Jumlah galon</label>
-                            <input type="text" class="form-control" name="jumlah">
+                          <input type="number" class="form-control" name="jumlah" value="{{$item->jumlah_galon}}" disabled>
                           </div>
                           @error('jumlah')
                           <small class="text-danger">{{$message}}</small>
                           @enderror
                           <div class="input-group input-group-outline my-3">
-                            <textarea name="keterangan" class="form-control" rows="5" placeholder="Keterangan" spellcheck="false"></textarea>
+                            <textarea name="keterangan" class="form-control" rows="5" placeholder="Keterangan" spellcheck="false" disabled>{{$item->keterangan}}</textarea>
                           </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary">Add</button>
+                          <button type="submit" class="btn btn-primary">Remove</button>
                         </div>
                       </div>
                     </div>

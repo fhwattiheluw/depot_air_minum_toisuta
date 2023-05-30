@@ -8,6 +8,19 @@
 </nav>
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('js'); ?>
+<script type="text/javascript">
+$(function() {
+  // setTimeout() function will be fired after page is loaded
+  // it will wait for 5 sec. and then will fire
+  // setTimeout(function() {
+  //     $("#alert").hide('blind', {}, 500)
+  // }, 5000);
+  $("#alert").delay(1500).fadeOut('slow');
+});
+</script>
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('title'); ?>
 ini judul
 <?php $__env->stopSection(); ?>
@@ -78,7 +91,7 @@ ini judul
                     <i class="fas fa-edit"></i>Edit
                   </a>
                   <!-- Modal -->
-                  <form method="post" class="modal fade" id="modal_edit_<?php echo e($item->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <form method="post" action="<?php echo e(Route('peminjaman.update',['id' => $item->id])); ?>" class="modal fade" id="modal_edit_<?php echo e($item->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <?php echo csrf_field(); ?>
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -89,13 +102,8 @@ ini judul
                           </button>
                         </div>
                         <div class="modal-body">
-                          <div id="SelectDataKostumer" class="input-group input-group-static">
-                            <label for="exampleFormControlSelect2" class="ms-0">Pilih Konsumen</label>
-                            <select multiple="" name="kostumer" class="form-control pb-4" id="exampleFormControlSelect2">
-                              <?php $__currentLoopData = $kostumer; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                              <option value="<?php echo e($item->id); ?>"><?php echo e($item->nama_kostumer); ?></option>
-                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
+                          <div class="input-group input-group-outline my-3">
+                            <input type="text" class="form-control" disabled value="<?php echo e($item->kostumer->nama_kostumer); ?>">
                           </div>
                           <?php $__errorArgs = ['kostumer'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -114,7 +122,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?> my-3">
+unset($__errorArgs, $__bag); ?> my-3 is-filled">
                             <label class="form-label">Tanggal pinjam</label>
                             <input type="date" class="form-control" name="tanggal" value="<?php echo e($item->tanggal_pinjam); ?>">
                           </div>
@@ -135,9 +143,9 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?> my-3">
+unset($__errorArgs, $__bag); ?> my-3 is-filled">
                             <label class="form-label">Jumlah galon</label>
-                          <input type="number" class="form-control" name="jumlah" value="1313">
+                          <input type="number" class="form-control" name="jumlah" value="<?php echo e($item->jumlah_galon); ?>">
                           </div>
                           <?php $__errorArgs = ['jumlah'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -166,7 +174,7 @@ unset($__errorArgs, $__bag); ?>
                     <i class="fas fa-trash"></i>Remove
                   </a>
                   <!-- Modal -->
-                  <form method="post" class="modal fade" id="modal_remove_<?php echo e($item->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <form method="post" action="<?php echo e(Route('peminjaman.delete',['id' => $item->id])); ?>" class="modal fade" id="modal_remove_<?php echo e($item->id); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <?php echo csrf_field(); ?>
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -177,13 +185,9 @@ unset($__errorArgs, $__bag); ?>
                           </button>
                         </div>
                         <div class="modal-body">
-                          <div id="SelectDataKostumer" class="input-group input-group-static">
-                            <label for="exampleFormControlSelect2" class="ms-0">Pilih Konsumen</label>
-                            <select multiple="" name="kostumer" class="form-control pb-4" id="exampleFormControlSelect2">
-                              <?php $__currentLoopData = $kostumer; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                              <option value="<?php echo e($item->id); ?>"><?php echo e($item->nama_kostumer); ?></option>
-                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
+                          <p>Apakah anda yakin untuk hapus data ini ?</p>
+                          <div class="input-group input-group-outline my-3">
+                            <input type="text" class="form-control" disabled value="<?php echo e($item->kostumer->nama_kostumer); ?>">
                           </div>
                           <?php $__errorArgs = ['kostumer'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -202,9 +206,9 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?> my-3">
+unset($__errorArgs, $__bag); ?> my-3 is-filled">
                             <label class="form-label">Tanggal pinjam</label>
-                            <input type="date" class="form-control" name="tanggal">
+                            <input type="date" class="form-control" name="tanggal" value="<?php echo e($item->tanggal_pinjam); ?>" disabled>
                           </div>
                           <?php $__errorArgs = ['tanggal'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -223,9 +227,9 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?> my-3">
+unset($__errorArgs, $__bag); ?> my-3 is-filled">
                             <label class="form-label">Jumlah galon</label>
-                            <input type="text" class="form-control" name="jumlah">
+                          <input type="number" class="form-control" name="jumlah" value="<?php echo e($item->jumlah_galon); ?>" disabled>
                           </div>
                           <?php $__errorArgs = ['jumlah'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -238,12 +242,12 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                           <div class="input-group input-group-outline my-3">
-                            <textarea name="keterangan" class="form-control" rows="5" placeholder="Keterangan" spellcheck="false"></textarea>
+                            <textarea name="keterangan" class="form-control" rows="5" placeholder="Keterangan" spellcheck="false" disabled><?php echo e($item->keterangan); ?></textarea>
                           </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-primary">Add</button>
+                          <button type="submit" class="btn btn-primary">Remove</button>
                         </div>
                       </div>
                     </div>
