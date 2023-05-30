@@ -13,7 +13,7 @@ class PeminjamanGalon extends Model
 
     public function kostumer(): BelongsTo
 {
-    return $this->belongsTo(Kostumer::class,'id');
+    return $this->belongsTo(Kostumer::class,'id_kostumer','id');
 }
 
 }

@@ -16,6 +16,7 @@ class PeminjamanGalonController extends Controller
   {
     $data['peminjaman'] = PeminjamanGalon::orderByDesc('tanggal_pinjam')->paginate(20);
     $data['kostumer'] = Kostumer::all();
+    // dd($data);
     return view('form_pinjaman_galon',$data);
   }
 

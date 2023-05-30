@@ -104,20 +104,20 @@ ini judul
                           @enderror
                           <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3">
                             <label class="form-label">Tanggal pinjam</label>
-                            <input type="date" class="form-control" name="tanggal">
+                            <input type="date" class="form-control" name="tanggal" value="{{$item->tanggal_pinjam}}">
                           </div>
                           @error('tanggal')
                           <small class="text-danger">{{$message}}</small>
                           @enderror
                           <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3">
                             <label class="form-label">Jumlah galon</label>
-                            <input type="text" class="form-control" name="jumlah">
+                          <input type="number" class="form-control" name="jumlah" value="{{$item->jumlah_galon}}">
                           </div>
                           @error('jumlah')
                           <small class="text-danger">{{$message}}</small>
                           @enderror
                           <div class="input-group input-group-outline my-3">
-                            <textarea name="keterangan" class="form-control" rows="5" placeholder="Keterangan" spellcheck="false"></textarea>
+                            <textarea name="keterangan" class="form-control" rows="5" placeholder="Keterangan" spellcheck="false">{{$item->keterangan}}</textarea>
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -226,7 +226,7 @@ ini judul
         @error('kostumer')
         <small class="text-danger">{{$message}}</small>
         @enderror
-        <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3">
+        <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3 filled">
           <label class="form-label">Tanggal pinjam</label>
           <input type="date" class="form-control" name="tanggal">
         </div>

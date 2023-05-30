@@ -116,7 +116,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?> my-3">
                             <label class="form-label">Tanggal pinjam</label>
-                            <input type="date" class="form-control" name="tanggal">
+                            <input type="date" class="form-control" name="tanggal" value="<?php echo e($item->tanggal_pinjam); ?>">
                           </div>
                           <?php $__errorArgs = ['tanggal'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -137,7 +137,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?> my-3">
                             <label class="form-label">Jumlah galon</label>
-                            <input type="text" class="form-control" name="jumlah">
+                          <input type="number" class="form-control" name="jumlah" value="1313">
                           </div>
                           <?php $__errorArgs = ['jumlah'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -150,7 +150,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                           <div class="input-group input-group-outline my-3">
-                            <textarea name="keterangan" class="form-control" rows="5" placeholder="Keterangan" spellcheck="false"></textarea>
+                            <textarea name="keterangan" class="form-control" rows="5" placeholder="Keterangan" spellcheck="false"><?php echo e($item->keterangan); ?></textarea>
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -309,7 +309,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?> my-3">
+unset($__errorArgs, $__bag); ?> my-3 filled">
           <label class="form-label">Tanggal pinjam</label>
           <input type="date" class="form-control" name="tanggal">
         </div>
