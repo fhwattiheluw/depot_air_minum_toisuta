@@ -9,5 +9,7 @@ class Kostumer extends Model
 {
     use HasFactory;
 
+    protected $table = 'kostumers';
     protected $guarded = ['id'];
+
 }

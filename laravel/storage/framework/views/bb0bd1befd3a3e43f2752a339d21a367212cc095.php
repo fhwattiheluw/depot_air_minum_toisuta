@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('breadcrumb'); ?>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
@@ -9,12 +11,34 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('title'); ?>
-ini judul
+Form Detail Pengeluaran
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('konten'); ?>
 
       <div class="row">
+        <?php if(session()->has('success')): ?>
+          <div class="col">
+            <div class="alert alert-success text-white" role="alert" id="alert">
+              <span class="alert-icon align-middle">
+                <i class="fas fa-thumbs-up"></i>
+              </span>
+              <span class="alert-text"><strong>Success!</strong> <?php echo e(Session::get('success')); ?></span>
+            </div>
+          </div>
+          <?php endif; ?>
+          <?php if($errors->any()): ?>
+            <div class="col">
+              <div class="alert alert-danger text-white">
+                  <ul>
+                      <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                          <li><?php echo e($error); ?></li>
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  </ul>
+              </div>
+            </div>
+        <?php endif; ?>
+
         <div class="col-12">
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
@@ -25,35 +49,41 @@ ini judul
             <div class="card-body px-0 pb-2">
               <div class="row">
                 <div class="col p-4">
-                  <form class="row justify-content-md-center">
+                  <form action="<?php echo e(Route('detail_pengeluaran.store')); ?>" method="post"  class="row justify-content-md-center" enctype="multipart/form-data">
+                    <?php echo csrf_field(); ?>
                     <div class="col-lg-6 col-md-6">
                       <div class="input-group input-group-static is-invalid mb-4">
                         <label for="exampleFormControlSelect1" class="ms-0">jenis pengeluaran</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
+                        <select class="form-control" name="id_pengeluaran" id="exampleFormControlSelect1">
                           <option>--- Pilih ---</option>
-                          <option>pengeluaran a</option>
-                          <option>pengeluaran a</option>
-                          <option>pengeluaran a</option>
+                          <?php $__currentLoopData = $jenis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jenis): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($jenis->id); ?>"><?php echo e($jenis->nama_pengeluaran); ?></option>
+                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
+                      </div>
+                      <label class="ms-0">Tanggal</label>
+                      <div class="input-group input-group-outline my-3">
+                        <!-- <label class="form-label">Tanggal</label> -->
+                        <input type="date" name="tanggal" class="form-control">
                       </div>
                       <div class="input-group input-group-outline is-invalid my-3">
                         <label class="form-label">Jumlah</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="jumlah" class="form-control">
                       </div>
                       <div class="input-group input-group-outline is-invalid my-3">
                         <label class="form-label">Harga satuan</label>
-                        <input type="text" class="form-control">
+                        <input type="number" name="harga_satuan" class="form-control">
                       </div>
                       <div class="input-group input-group-outline is-invalid my-3">
-                        <textarea class="form-control" rows="5" placeholder="Ketik keterangan" spellcheck="false"></textarea>
+                        <textarea name="keterangan" class="form-control" rows="5" placeholder="Ketik keterangan" spellcheck="false"></textarea>
                       </div>
                       <label for="">Nota</label>
                       <div class="input-group input-group-outline  is-invalid my-3">
                         <!-- <label class="form-label">Nota</label> -->
-                        <input type="file" class="form-control">
+                        <input type="file" name="nota" class="form-control">
                       </div>
                       <div class="input-group input-group-outline my-3">
-                        <button type="button" class="btn btn-primary" name="button">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                       </div>
                     </div>
                   </form>
