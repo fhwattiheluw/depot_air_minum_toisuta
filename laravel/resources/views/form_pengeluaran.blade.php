@@ -66,19 +66,19 @@ Form Detail Pengeluaran
                         <!-- <label class="form-label">Tanggal</label> -->
                         <input type="date" name="tanggal" class="form-control">
                       </div>
-                      <div class="input-group input-group-outline is-invalid my-3">
+                      <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3">
                         <label class="form-label">Jumlah</label>
                         <input type="text" name="jumlah" class="form-control">
                       </div>
-                      <div class="input-group input-group-outline is-invalid my-3">
+                      <div class="input-group input-group-outline @error('harga_satuan') is-invalid @enderror my-3">
                         <label class="form-label">Harga satuan</label>
                         <input type="number" name="harga_satuan" class="form-control">
                       </div>
-                      <div class="input-group input-group-outline is-invalid my-3">
+                      <div class="input-group input-group-outline @error('keterangan') is-invalid @enderror my-3">
                         <textarea name="keterangan" class="form-control" rows="5" placeholder="Ketik keterangan" spellcheck="false"></textarea>
                       </div>
                       <label for="">Nota</label>
-                      <div class="input-group input-group-outline  is-invalid my-3">
+                      <div class="input-group input-group-outline @error('nota') is-invalid @enderror my-3">
                         <!-- <label class="form-label">Nota</label> -->
                         <input type="file" name="nota" class="form-control">
                       </div>

@@ -9,11 +9,6 @@ use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
       DB::table('pengeluarans')->insert([
@@ -32,6 +27,12 @@ class DatabaseSeeder extends Seeder
           'email' => Str::random(15).'@gmail.com',
           'password' =>  Hash::make('12345678'),
           'level' => 'operator'
+      ]);
+      DB::table('users')->insert([
+          'name' => 'admin' . Str::random(10),
+          'email' => Str::random(15).'@gmail.com',
+          'password' =>  Hash::make('12345678'),
+          'level' => 'admin'
       ]);
     }
 }
