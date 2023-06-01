@@ -32,34 +32,30 @@ ini judul
       <div class="card-body pt-4 pb-3">
         <div class="row ">
           <div class="col col-md-5 ">
-            <form>
+            <form method="get">
               <div class="row">
                 <div class="col ">
                   <div class="input-group input-group-outline mb-4 is-filled">
                     <label for="exampleFormControlSelect1" class="form-label">Bulan</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                    <select class="form-control" name="m" id="exampleFormControlSelect1">
+                      <?php for($i = 01; $i <= 12; $i++): ?>
+                      <option value="<?php echo e($i); ?>" <?php if($i == $filter['bulan']): ?> selected <?php endif; ?> ><?php echo e($i); ?></option>
+                      <?php endfor; ?>
                     </select>
                   </div>
                 </div>
                 <div class="col ">
                   <div class="input-group input-group-outline mb-4 is-filled">
                     <label for="exampleFormControlSelect1" class="form-label">Tahun</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                    <select class="form-control" name="y" id="exampleFormControlSelect1">
+                    <?php for($i = 2023; $i >= 2020; $i--): ?>
+                      <option value="<?php echo e($i); ?>" <?php if($i == $filter['tahun']): ?> selected <?php endif; ?> ><?php echo e($i); ?></option>
+                      <?php endfor; ?>
                     </select>
                   </div>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-primary mb-4" name="button">Lihat</button>
+                  <button type="submit" class="btn btn-primary mb-4">Lihat</button>
                 </div>
               </div>
             </form>
@@ -95,12 +91,12 @@ ini judul
               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </tbody>
-            <tfoot>
+            <!-- <tfoot>
               <tr>
                 <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Net income</th>
                 <th class="text-center text-uppercase text-secondary   font-weight-bolder opacity-7">Rp. 1000000</th>
               </tr>
-            </tfoot>
+            </tfoot> -->
           </table>
         </div>
       </div>

@@ -13,9 +13,12 @@ class RekapanController extends Controller
       return view('rekapan_semua');
     }
 
-    public function pengantaran()
+    public function pengantaran(Request $request,$m = null,$y = null)
     {
-      $data['penjualan'] = DB::table('penjualans')->select(DB::raw('tanggal,sum(tempat) as tempat,sum(mobil) as mobil,sum(motor) as motor,sum(total_harga)'))->groupBy('tanggal')->get();
+      $m = $request->m;
+      $y = $request->y;
+      $data['filter'] = ['bulan' => $m, 'tahun' => $y];
+      $data['penjualan'] = DB::table('penjualans')->select(DB::raw('tanggal,sum(tempat) as tempat,sum(mobil) as mobil,sum(motor) as motor,sum(total_harga)'))->whereMonth('tanggal', $m)->whereYear('tanggal', $y)->groupBy('tanggal')->get();
       return view('rekapan_pengantaran',$data);
     }
 
