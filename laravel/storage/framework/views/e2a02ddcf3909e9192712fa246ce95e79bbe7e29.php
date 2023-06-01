@@ -29,14 +29,14 @@ ini judul
           <!-- <h6 class="text-white text-capitalize ps-3">Manajemen user</h6> -->
         </div>
       </div>
-      <div class="card-body px-0 pb-2">
+      <div class="card-body pt-4 pb-3">
         <div class="row ">
           <div class="col col-md-5 ">
             <form>
               <div class="row">
                 <div class="col ">
-                  <div class="input-group input-group-static mb-4">
-                    <label for="exampleFormControlSelect1" class="ms-0">Bulan</label>
+                  <div class="input-group input-group-outline mb-4 is-filled">
+                    <label for="exampleFormControlSelect1" class="form-label">Bulan</label>
                     <select class="form-control" id="exampleFormControlSelect1">
                       <option>1</option>
                       <option>2</option>
@@ -47,8 +47,8 @@ ini judul
                   </div>
                 </div>
                 <div class="col ">
-                  <div class="input-group input-group-static mb-4">
-                    <label for="exampleFormControlSelect1" class="ms-0">Tahun</label>
+                  <div class="input-group input-group-outline mb-4 is-filled">
+                    <label for="exampleFormControlSelect1" class="form-label">Tahun</label>
                     <select class="form-control" id="exampleFormControlSelect1">
                       <option>1</option>
                       <option>2</option>
@@ -59,7 +59,7 @@ ini judul
                   </div>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-primary mb-4" name="button">Submit</button>
+                  <button type="button" class="btn btn-primary mb-4" name="button">Lihat</button>
                 </div>
               </div>
             </form>
@@ -77,20 +77,22 @@ ini judul
               </tr>
             </thead>
             <tbody>
+              <?php $__currentLoopData = $penjualan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $items): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <tr>
                 <td class="align-middle text-center text-sm">
-                  <p>2023-05-12</p>
+                  <p><?php echo e($items->tanggal); ?></p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <p>6</p>
+                  <p><?php echo e($items->tempat); ?></p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <p>5</p>
+                  <p><?php echo e($items->motor); ?></p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <p>5</p>
+                  <p><?php echo e($items->mobil); ?></p>
                 </td>
               </tr>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </tbody>
             <tfoot>

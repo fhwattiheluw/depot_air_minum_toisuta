@@ -79,9 +79,10 @@ ini judul
               </tr>
             </thead>
             <tbody>
+              @foreach('$data_tanggal as $item_tgl')
               <tr>
                 <td class="align-middle text-center text-sm">
-                  <p>2023-05-12</p>
+                  <p>{{$item_tgl->tanggal}}</p>
                 </td>
                 <td class="align-middle text-center text-sm">
                   <p>6</p>
@@ -96,6 +97,7 @@ ini judul
                   <p>50000</p>
                 </td>
               </tr>
+              @endforeach
 
             </tbody>
             <tfoot>

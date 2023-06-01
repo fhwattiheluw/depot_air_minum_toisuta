@@ -132,7 +132,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white <?php echo e((Request::is('rekapan/pengantaran') ? 'active bg-gradient-primary' : '')); ?>" href="<?php echo e(route('rekapan.pengantaran')); ?>">
+          <a class="nav-link text-white <?php echo e((Request::is('rekapan/pengantaran') ? 'active bg-gradient-primary' : '')); ?>" href="<?php echo e(route('rekapan.pengantaran',['m' => date('m'), 'y' => date('Y')])); ?>">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-table"></i>
             </div>

@@ -22,7 +22,7 @@ $(function() {
 });
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function(){
   $("#SelectDataKostumer").hide();
     $('#pilihTipePenjualan').on('change', function() {
@@ -36,7 +36,7 @@ $(document).ready(function(){
       }
     });
 });
-</script>
+</script> -->
 @endsection
 
 @section('title')
@@ -79,6 +79,12 @@ ini judul
             <form action="{{Route('penjualan.insert')}}" method="post" class="row justify-content-md-center">
               @csrf
               <div class="col-6">
+                <div class="input-group input-group-outline @error('tanggal') is-invalid @enderror my-3 is-filled">
+                  <label class="form-label">Tanggal</label>
+                  <input type="date" name="tanggal" class="form-control" >
+                </div>
+                @error('tanggal') <small class="text-danger">Pilih tanggal penjualan</small> @enderror
+
                 <div class="input-group input-group-static is-invalid mb-4">
                   <label for="exampleFormControlSelect1" class="ms-0">Pengantaran</label>
                   <select class="form-control" name="tipe_penjualan" id="pilihTipePenjualan">
@@ -91,6 +97,7 @@ ini judul
                 <div id="SelectDataKostumer" class="input-group input-group-static">
                   <label for="exampleFormControlSelect2" class="ms-0">Pilih Konsumen</label>
                   <select multiple="" name="kostumer" class="form-control pb-4" id="exampleFormControlSelect2" >
+                    <option value="" selected>Tidak ada</option>
                     @foreach($kostumers as $item)
                     <option value="{{$item->id}}">{{$item->nama_kostumer}}</option>
                     @endforeach

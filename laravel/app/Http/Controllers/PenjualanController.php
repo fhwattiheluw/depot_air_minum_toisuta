@@ -19,44 +19,43 @@ class PenjualanController extends Controller
     {
       // validate
       $validated = $request->validate([
-          'tipe_penjualan' => 'required'
+          'tipe_penjualan' => 'required',
+          'tanggal' => 'required'
       ]);
+      //data insert
       if ($request->tipe_penjualan == 'beli di tempat') {
-        $validated = $request->validate([
-            'harga_satuan' => 'required|numeric',
-            'pembayaran' => 'required',
-            'jumlah' => 'required|numeric',
-        ]);
-        //data insert
         $data = array(
-          'tanggal' => date('Y-m-d'),
-          'tipe_penjualan' => $request->input('tipe_penjualan'),
-          'harga_satuan' => $request->input('harga_satuan'),
-          'jumlah' => $request->input('jumlah'),
+          'tanggal' => $request->input('tanggal'),
+          'tempat' => (int)$request->input('jumlah'),
+          'harga_satuan' => (int)$request->input('harga_satuan'),
           'total_harga' => (int)$request->input('harga_satuan') * (int)$request->input('jumlah'),
           'pembayaran' => $request->input('pembayaran'),
+          'id_kostumer' => $request->input('kostumer'),
         );
-      } else {
-        $validated = $request->validate([
-          'kostumer' => 'required',
-            'harga_satuan' => 'required|numeric',
-            'pembayaran' => 'required',
-            'jumlah' => 'required|numeric',
-        ]);
-        //data insert
+      }elseif ($request->tipe_penjualan == 'antar motor') {
         $data = array(
-          'tanggal' => date('Y-m-d'),
-          'tipe_penjualan' => $request->input('tipe_penjualan'),
-          'harga_satuan' => $request->input('harga_satuan'),
-          'jumlah' => $request->input('jumlah'),
+          'tanggal' => $request->input('tanggal'),
+          'motor' => (int)$request->input('jumlah'),
+          'harga_satuan' => (int)$request->input('harga_satuan'),
+          'total_harga' => (int)$request->input('harga_satuan') * (int)$request->input('jumlah'),
+          'pembayaran' => $request->input('pembayaran'),
+          'id_kostumer' => $request->input('kostumer'),
+        );
+      }elseif ($request->tipe_penjualan == 'antar mobil') {
+        $data = array(
+          'tanggal' => $request->input('tanggal'),
+          'mobil' => (int)$request->input('jumlah'),
+          'harga_satuan' => (int)$request->input('harga_satuan'),
           'total_harga' => (int)$request->input('harga_satuan') * (int)$request->input('jumlah'),
           'pembayaran' => $request->input('pembayaran'),
           'id_kostumer' => $request->input('kostumer'),
         );
       }
 
-      // model insert
+      print_r($data);
+      // die();
 
+      // model insert
       $model_penjualan = Penjualan::create($data); // modal create
 
       // redirect with session

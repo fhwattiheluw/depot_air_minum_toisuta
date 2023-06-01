@@ -20,7 +20,7 @@ $(function() {
 });
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function(){
   $("#SelectDataKostumer").hide();
     $('#pilihTipePenjualan').on('change', function() {
@@ -34,7 +34,7 @@ $(document).ready(function(){
       }
     });
 });
-</script>
+</script> -->
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('title'); ?>
@@ -77,6 +77,26 @@ ini judul
             <form action="<?php echo e(Route('penjualan.insert')); ?>" method="post" class="row justify-content-md-center">
               <?php echo csrf_field(); ?>
               <div class="col-6">
+                <div class="input-group input-group-outline <?php $__errorArgs = ['tanggal'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> my-3 is-filled">
+                  <label class="form-label">Tanggal</label>
+                  <input type="date" name="tanggal" class="form-control" >
+                </div>
+                <?php $__errorArgs = ['tanggal'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> <small class="text-danger">Pilih tanggal penjualan</small> <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+
                 <div class="input-group input-group-static is-invalid mb-4">
                   <label for="exampleFormControlSelect1" class="ms-0">Pengantaran</label>
                   <select class="form-control" name="tipe_penjualan" id="pilihTipePenjualan">
@@ -89,6 +109,7 @@ ini judul
                 <div id="SelectDataKostumer" class="input-group input-group-static">
                   <label for="exampleFormControlSelect2" class="ms-0">Pilih Konsumen</label>
                   <select multiple="" name="kostumer" class="form-control pb-4" id="exampleFormControlSelect2" >
+                    <option value="" selected>Tidak ada</option>
                     <?php $__currentLoopData = $kostumers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <option value="<?php echo e($item->id); ?>"><?php echo e($item->nama_kostumer); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
