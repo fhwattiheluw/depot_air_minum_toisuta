@@ -6,46 +6,38 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePenjualansTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('penjualans', function (Blueprint $table) {
-          $table->id()->autoIncrement();
-          $table->date('tanggal');
-          // $table->string('tipe_penjualan',100);
-          $table->bigInteger('harga_satuan');
-          $table->bigInteger('motor')->default(0);
-          $table->bigInteger('mobil')->default(0);
-          $table->bigInteger('tempat')->default(0);
-          $table->bigInteger('total_harga');
-          $table->enum('pembayaran', ['lunas', 'bon']);
-          $table->timestamps($precision = 0);
-          $table->bigInteger('id_kostumer')->nullable($value = true);
+  /**
+  * Run the migrations.
+  *
+  * @return void
+  */
+  public function up()
+  {
+    Schema::create('penjualan', function (Blueprint $table) {
+      $table->id()->autoIncrement();
+      $table->date('tanggal');
+      $table->bigInteger('total_penjualan');
+      $table->timestamps($precision = 0);
+    });
 
-            // $table->id()->autoIncrement();
-            // $table->date('tanggal');
-            // $table->string('tipe_penjualan',100);
-            // $table->bigInteger('harga_satuan');
-            // $table->bigInteger('jumlah');
-            // $table->bigInteger('total_harga');
-            // $table->enum('pembayaran', ['lunas', 'bon']);
-            // $table->timestamps($precision = 0);
-            // $table->bigInteger('id_kostumer')->nullable($value = true);
+    Schema::create('detail_penjualan', function (Blueprint $table) {
+      $table->id()->autoIncrement();
+      $table->string('tipe_penjualan',100);
+      $table->bigInteger('harga_satuan');
+      $table->bigInteger('jumlah');
+      $table->enum('pembayaran', ['lunas', 'bon']);
+      $table->timestamps($precision = 0);
 
-        });
-    }
+      $table->bigInteger('id_kostumer')->nullable($value = true);
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('penjualans');
-    }
+      $table->unsignedBigInteger('id_penjualan');
+      $table->foreign('id_penjualan')->references('id')->on('penjualan');
+    });
+  }
+
+  public function down()
+  {
+    Schema::dropIfExists('penjualan');
+    Schema::dropIfExists('detail_penjualan');
+  }
 }

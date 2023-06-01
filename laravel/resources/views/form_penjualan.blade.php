@@ -97,7 +97,7 @@ ini judul
                 <div id="SelectDataKostumer" class="input-group input-group-static">
                   <label for="exampleFormControlSelect2" class="ms-0">Pilih Konsumen</label>
                   <select multiple="" name="kostumer" class="form-control pb-4" id="exampleFormControlSelect2" >
-                    <option value="" selected>Tidak ada</option>
+                    <option value="0" selected>Tidak ada</option>
                     @foreach($kostumers as $item)
                     <option value="{{$item->id}}">{{$item->nama_kostumer}}</option>
                     @endforeach

@@ -109,7 +109,7 @@ unset($__errorArgs, $__bag); ?>
                 <div id="SelectDataKostumer" class="input-group input-group-static">
                   <label for="exampleFormControlSelect2" class="ms-0">Pilih Konsumen</label>
                   <select multiple="" name="kostumer" class="form-control pb-4" id="exampleFormControlSelect2" >
-                    <option value="" selected>Tidak ada</option>
+                    <option value="0" selected>Tidak ada</option>
                     <?php $__currentLoopData = $kostumers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <option value="<?php echo e($item->id); ?>"><?php echo e($item->nama_kostumer); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
