@@ -501,6 +501,7 @@ class ComposerStaticInit5aa8ee7cf4295d386f2f1945c29fcca5
         'App\\Http\\Controllers\\AkunController' => __DIR__ . '/../..' . '/app/Http/Controllers/AkunController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
+        'App\\Http\\Controllers\\DetailPengeluaranController' => __DIR__ . '/../..' . '/app/Http/Controllers/DetailPengeluaranController.php',
         'App\\Http\\Controllers\\KostumerController' => __DIR__ . '/../..' . '/app/Http/Controllers/KostumerController.php',
         'App\\Http\\Controllers\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/LoginController.php',
         'App\\Http\\Controllers\\PeminjamanGalonController' => __DIR__ . '/../..' . '/app/Http/Controllers/PeminjamanGalonController.php',

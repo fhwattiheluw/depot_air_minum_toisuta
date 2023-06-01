@@ -69,7 +69,7 @@ ini judul
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah beli di tempat</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah antar dengan motor</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah antar dengan mobil</th>
-
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total</th>
               </tr>
             </thead>
             <tbody>
@@ -87,16 +87,19 @@ ini judul
                 <td class="align-middle text-center text-sm">
                   <p><?php echo e($items->mobil); ?></p>
                 </td>
+                <td class="align-middle text-center text-sm">
+                  <p><?php echo e($items->total_harga); ?></p>
+                </td>
               </tr>
               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </tbody>
-            <!-- <tfoot>
+            <tfoot>
               <tr>
-                <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Net income</th>
-                <th class="text-center text-uppercase text-secondary   font-weight-bolder opacity-7">Rp. 1000000</th>
+                <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Total penjualan</th>
+                <th class="text-center text-uppercase text-secondary   font-weight-bolder opacity-7">Rp. <?php echo e($total->penjualan); ?></th>
               </tr>
-            </tfoot> -->
+            </tfoot>
           </table>
         </div>
       </div>

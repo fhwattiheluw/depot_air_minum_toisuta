@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Pengeluaran extends Model
 {
     use HasFactory;
+    protected $table = 'transaksi_pengeluaran';
+    protected $fillable = ['tanggal','total_transaksi'];
 }

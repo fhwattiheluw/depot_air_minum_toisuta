@@ -54,10 +54,10 @@ Form Detail Pengeluaran
                     <div class="col-lg-6 col-md-6">
                       <div class="input-group input-group-static is-invalid mb-4">
                         <label for="exampleFormControlSelect1" class="ms-0">jenis pengeluaran</label>
-                        <select class="form-control" name="id_pengeluaran" id="exampleFormControlSelect1">
+                        <select class="form-control" name="item_pengeluaran" id="exampleFormControlSelect1">
                           <option>--- Pilih ---</option>
                           @foreach($jenis as $jenis)
-                            <option value="{{$jenis->id}}">{{$jenis->nama_pengeluaran}}</option>
+                            <option value="{{$jenis->id}}">{{$jenis->nama_item}}</option>
                           @endforeach
                         </select>
                       </div>

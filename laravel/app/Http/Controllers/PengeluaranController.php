@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pengeluaran;
+use App\Models\item_pengeluaran;
 use Illuminate\Http\Request;
 // https://laravel.com/docs/8.x/encryption
 use Illuminate\Contracts\Encryption\DecryptException;
@@ -12,7 +12,7 @@ class PengeluaranController extends Controller
 {
     public function index()
     {
-      $items = Pengeluaran::all();
+      $items = item_pengeluaran::all();
       return view('kelola_jenis_pengeluaran', ['items'=>$items]);
 
     }
@@ -22,7 +22,7 @@ class PengeluaranController extends Controller
       // decrypt
       echo $id =Crypt::decryptString($id);
       // model delete
-      Pengeluaran::destroy($id);
+      item_pengeluaran::destroy($id);
       // redirect kembali
       // flashdata
       $request->session()->flash('status', 'Task was successful!');
@@ -35,11 +35,11 @@ class PengeluaranController extends Controller
       $id =Crypt::decryptString($id);
       // // validate
       $this->validate($request, [
-        'nama_pengeluaran' => 'required|unique:pengeluarans,nama_pengeluaran'
+        'nama_pengeluaran' => 'required|unique:item_pengeluaran,nama_item'
       ]);
       // model update
-      $data = array('nama_pengeluaran' => $request->nama_pengeluaran);
-      Pengeluaran::where('id', $id)->update($data);
+      $data = array('nama_item' => $request->nama_pengeluaran);
+      item_pengeluaran::where('id', $id)->update($data);
 
       // redirect kembali
       // flashdata
@@ -50,10 +50,11 @@ class PengeluaranController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-        'nama_pengeluaran' => 'required|unique:pengeluarans,nama_pengeluaran'
+        'nama_pengeluaran' => 'required|unique:item_pengeluaran,nama_item'
       ]);
-      $item = new Pengeluaran();
-      $item->nama_pengeluaran = $request->nama_pengeluaran;
+
+      $item = new item_pengeluaran();
+      $item->nama_item = $request->nama_pengeluaran;
       $item->save();
 
       $request->session()->flash('status', 'Task was successful!');

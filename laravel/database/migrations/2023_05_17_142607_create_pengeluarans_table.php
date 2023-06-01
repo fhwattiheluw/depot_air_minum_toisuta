@@ -13,12 +13,32 @@ class CreatePengeluaransTable extends Migration
      */
     public function up()
     {
-        Schema::create('pengeluarans', function (Blueprint $table) {
+        Schema::create('transaksi_pengeluaran', function (Blueprint $table) {
             $table->id();
-            $table->char('nama_pengeluaran', 150);
+            $table->date('tanggal');
+            $table->bigInteger('total_transaksi');
             $table->timestamps($precision = 0);
-            // $table->primary('id');
-            // $table->increments('id');
+        });
+
+        Schema::create('item_pengeluaran', function (Blueprint $table) {
+            $table->id();
+            $table->char('nama_item', 150);
+            $table->timestamps($precision = 0);
+        });
+
+        Schema::create('detail_pengeluaran', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('jumlah');
+            $table->bigInteger('harga_satuan');
+            $table->text('keterangan');
+            $table->string('nota');
+            $table->timestamps($precision = 0);
+
+            $table->unsignedBigInteger('id_item');
+             $table->foreign('id_item')->references('id')->on('item_pengeluaran');
+
+             $table->unsignedBigInteger('id_pengeluaran');
+              $table->foreign('id_pengeluaran')->references('id')->on('transaksi_pengeluaran');
         });
     }
 
@@ -29,6 +49,10 @@ class CreatePengeluaransTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengeluarans');
+        Schema::dropIfExists('pengeluaran');
+        Schema::dropIfExists('item_pengeluaran');
+        Schema::dropIfExists('detail_pengeluaran');
+
+
     }
 }
