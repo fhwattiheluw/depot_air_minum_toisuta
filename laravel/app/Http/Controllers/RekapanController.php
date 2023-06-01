@@ -8,9 +8,15 @@ use Illuminate\Support\Facades\DB;
 
 class RekapanController extends Controller
 {
-    public function semua()
+    public function semua(Request $request, $bulan = null, $tahun = null)
     {
-      return view('rekapan_semua');
+      $bulan = $request->bulan;
+      $tahun = $request->tahun;
+      $data['filter'] = ['bulan' => $bulan, 'tahun' => $tahun];
+      $data['penjualan'] = Penjualan::select(DB::raw('tanggal,sum(total_penjualan) as total'))->whereMonth('tanggal', $bulan)->whereYear('tanggal',$tahun)->groupBy('tanggal')->get();
+      $data['total'] =  Penjualan::select(DB::raw('sum(total_penjualan) as total'))->whereMonth('tanggal', $bulan)->whereYear('tanggal', $tahun)->first();
+
+      return view('rekapan_semua',$data);
     }
 
     public function pengantaran(Request $request,$m = null,$y = null)

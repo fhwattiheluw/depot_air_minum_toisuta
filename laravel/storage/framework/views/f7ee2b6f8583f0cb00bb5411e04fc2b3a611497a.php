@@ -2,9 +2,9 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-    <li class="breadcrumb-item text-sm text-dark " aria-current="page">Rekapan semua</li>
+    <li class="breadcrumb-item text-sm text-dark " aria-current="page">Rekapan penjualan</li>
   </ol>
-  <h6 class="font-weight-bolder mb-0">Rekapan semua</h6>
+  <h6 class="font-weight-bolder mb-0">Rekapan penjualan</h6>
 </nav>
 <?php $__env->stopSection(); ?>
 
@@ -20,7 +20,7 @@ ini judul
         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
           <div class="row">
             <div class="col-6 d-flex align-items-center">
-              <h6 class="text-white text-capitalize ps-4">Rekapan Semua</h6>
+              <h6 class="text-white text-capitalize ps-4">Rekapan penjualan</h6>
             </div>
             <div class="col-6 text-end">
               <a class="btn btn-dark mb-0" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="material-icons text-sm">print</i> Cetak</a>
@@ -29,37 +29,34 @@ ini judul
           <!-- <h6 class="text-white text-capitalize ps-3">Manajemen user</h6> -->
         </div>
       </div>
-      <div class="card-body px-0 pb-2">
+      <div class="card-body pt-4 pb-3">
         <div class="row ">
           <div class="col col-md-5 ">
-            <form>
+            <form method="get">
               <div class="row">
                 <div class="col ">
-                  <div class="input-group input-group-static mb-4">
-                    <label for="exampleFormControlSelect1" class="ms-0">Bulan</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                  <div class="input-group input-group-outline is-filled">
+                    <label for="exampleFormControlSelect1" class="form-label">Bulan</label>
+                    <select class="form-control" name="bulan" id="exampleFormControlSelect1">
+                      <?php for($i = 1; $i <= 12; $i++): ?>
+                      <option value="<?php echo e($i); ?>" <?php if($i == $filter['bulan']): ?> selected <?php endif; ?>><?php echo e($i); ?></option>
+                      <?php endfor; ?>
                     </select>
                   </div>
                 </div>
+                <!-- <?php echo e($current_year = date('Y')); ?> -->
                 <div class="col ">
-                  <div class="input-group input-group-static mb-4">
-                    <label for="exampleFormControlSelect1" class="ms-0">Tahun</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                  <div class="input-group input-group-outline is-filled">
+                    <label for="exampleFormControlSelect1" class="form-label">Tahun</label>
+                    <select class="form-control" name="tahun" id="exampleFormControlSelect1">
+                      <?php for($year = date('Y'); $year >= 2020; $year--): ?>
+                      <option value="<?php echo e($year); ?>" <?php if($year == $filter['tahun']): ?> selected <?php endif; ?>><?php echo e($year); ?></option>
+                      <?php endfor; ?>
                     </select>
                   </div>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-primary mb-4" name="button">Submit</button>
+                  <button type="submit" class="btn btn-primary mb-4">lihat</button>
                 </div>
               </div>
             </form>
@@ -70,36 +67,32 @@ ini judul
             <thead>
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">total galon harga Rp.6000</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">total galon harga Rp. 7000</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pemasukan</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pengeluaran</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total penjualan</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
               </tr>
             </thead>
             <tbody>
+              <?php $__currentLoopData = $penjualan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <tr>
                 <td class="align-middle text-center text-sm">
-                  <p>$items->tanggal</p>
+                  <p><?php echo e($item->tanggal); ?></p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <p>6</p>
+                  <p><?php echo e($item->total); ?></p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <p>5</p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                  <p>300000</p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                  <p>50000</p>
+                  <a href="#" class="text-success font-weight-bold text-xs" >
+                    <i class="fas fa-edit"></i>Lihat detail
+                  </a>
                 </td>
               </tr>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </tbody>
             <tfoot>
               <tr>
-                <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Net income</th>
-                <th class="text-center text-uppercase text-secondary   font-weight-bolder opacity-7">Rp. 1000000</th>
+                <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Total penjualan</th>
+                <th class="text-center text-uppercase text-secondary   font-weight-bolder opacity-7">Rp. <?php echo e($total->total); ?></th>
               </tr>
             </tfoot>
           </table>
