@@ -43,6 +43,7 @@ Route::post('/peminjaman/update/{id}',[PeminjamanGalonController::class, 'update
 Route::post('/peminjaman/delete/{id}',[PeminjamanGalonController::class, 'delete'])->name('peminjaman.delete');
 
 Route::get('/rekapan/semua',[RekapanController::class, 'semua'])->name('rekapan.semua');
+Route::get('/rekapan/semua/detail/{date}',[RekapanController::class, 'detail_penjualan'])->name('rekapan.semua.detail');
 Route::get('/rekapan/pengantaran',[RekapanController::class, 'pengantaran'])->name('rekapan.pengantaran');
 Route::get('/rekapan/kostumer',[RekapanController::class, 'kostumer'])->name('rekapan.kostumer');
 Route::get('/rekapan/pengeluaran',[RekapanController::class, 'pengeluaran'])->name('rekapan.pengeluaran');

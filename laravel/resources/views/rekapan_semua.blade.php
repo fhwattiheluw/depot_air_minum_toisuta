@@ -83,7 +83,7 @@ ini judul
                   <p>{{$item->total}}</p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <a href="#" class="text-success font-weight-bold text-xs" >
+                  <a href="{{Route('rekapan.semua.detail',['date' => $item->tanggal])}}" class="text-success font-weight-bold text-xs" >
                     <i class="fas fa-edit"></i>Lihat detail
                   </a>
                 </td>

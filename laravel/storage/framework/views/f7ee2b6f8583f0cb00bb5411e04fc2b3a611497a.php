@@ -81,7 +81,7 @@ ini judul
                   <p><?php echo e($item->total); ?></p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <a href="#" class="text-success font-weight-bold text-xs" >
+                  <a href="<?php echo e(Route('rekapan.semua.detail',['date' => $item->tanggal])); ?>" class="text-success font-weight-bold text-xs" >
                     <i class="fas fa-edit"></i>Lihat detail
                   </a>
                 </td>
