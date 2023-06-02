@@ -44,34 +44,45 @@ class RekapanController extends Controller
     $y = $request->y;
     $data['filter'] = ['bulan' => $m, 'tahun' => $y];
     $data['penjualan'] = DB::select("SELECT penjualan.tanggal,
-             SUM((SELECT SUM(detail_penjualan.jumlah)
-              FROM detail_penjualan
-              WHERE detail_penjualan.id_penjualan = penjualan.id
-                             AND detail_penjualan.tipe_penjualan = 'antar mobil')
-             )AS total_mobil, SUM((SELECT SUM(detail_penjualan.jumlah)
-              FROM detail_penjualan
-              WHERE detail_penjualan.id_penjualan = penjualan.id
-                             AND detail_penjualan.tipe_penjualan = 'antar motor')
-             )AS total_motor, SUM((SELECT SUM(detail_penjualan.jumlah)
-              FROM detail_penjualan
-              WHERE detail_penjualan.id_penjualan = penjualan.id
-                             AND detail_penjualan.tipe_penjualan = 'beli di tempat')
-             )AS total_tempat
-             FROM penjualan
-             where month(penjualan.tanggal) = :bulan and year(penjualan.tanggal) = :tahun
-       group by penjualan.tanggal
-       order by penjualan.tanggal asc",['bulan' => $m, 'tahun' => $y]);
+      SUM((SELECT SUM(detail_penjualan.jumlah)
+      FROM detail_penjualan
+      WHERE detail_penjualan.id_penjualan = penjualan.id
+      AND detail_penjualan.tipe_penjualan = 'antar mobil')
+    )AS total_mobil, SUM((SELECT SUM(detail_penjualan.jumlah)
+    FROM detail_penjualan
+    WHERE detail_penjualan.id_penjualan = penjualan.id
+    AND detail_penjualan.tipe_penjualan = 'antar motor')
+  )AS total_motor, SUM((SELECT SUM(detail_penjualan.jumlah)
+  FROM detail_penjualan
+  WHERE detail_penjualan.id_penjualan = penjualan.id
+  AND detail_penjualan.tipe_penjualan = 'beli di tempat')
+)AS total_tempat
+FROM penjualan
+where month(penjualan.tanggal) = :bulan and year(penjualan.tanggal) = :tahun
+group by penjualan.tanggal
+order by penjualan.tanggal asc",['bulan' => $m, 'tahun' => $y]);
 
-    return view('rekapan_pengantaran',$data);
-  }
+return view('rekapan_pengantaran',$data);
+}
 
-  public function kostumer($value='')
-  {
-    return view('rekapan_penjualan_kostumer');
-  }
+public function kostumer(Request $request)
+{
+  $hari = $request->hari;
+  $bulan = $request->bulan;
+  $tahun = $request->tahun;
+  $data['filter'] = ['hari' => $hari,'bulan' => $bulan, 'tahun' => $tahun];
+  $query = "select t2.tanggal, sum(t1.jumlah) as jumlah , t3.nama_kostumer
+  from detail_penjualan t1
+  inner join penjualan t2 on t2.id = t1.id_penjualan
+  inner join kostumers t3 on t3.id = t1.id_kostumer
+  where day(t2.tanggal) = :hari and month(t2.tanggal) = :bulan and year(t2.tanggal) = :tahun
+  group by t2.tanggal,t3.nama_kostumer";
+  $data['rekapan'] = DB::select($query,['hari' => $hari,'bulan'=> $bulan,'tahun' => $tahun]);
+  return view('rekapan_penjualan_kostumer',$data);
+}
 
-  public function pengeluaran($value='')
-  {
-    return view('rekapan_pengeluaran');
-  }
+public function pengeluaran($value='')
+{
+  return view('rekapan_pengeluaran');
+}
 }
