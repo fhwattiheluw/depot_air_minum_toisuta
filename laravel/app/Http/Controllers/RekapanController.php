@@ -43,8 +43,25 @@ class RekapanController extends Controller
     $m = $request->m;
     $y = $request->y;
     $data['filter'] = ['bulan' => $m, 'tahun' => $y];
-    $data['penjualan'] = DB::table('penjualans')->select(DB::raw('tanggal,sum(tempat) as tempat,sum(mobil) as mobil,sum(motor) as motor,sum(total_harga) as total_harga'))->whereMonth('tanggal', $m)->whereYear('tanggal', $y)->groupBy('tanggal')->get();
-    $data['total'] = DB::table('penjualans')->select(DB::raw('sum(total_harga) as penjualan'))->whereMonth('tanggal', $m)->whereYear('tanggal', $y)->first();
+    $data['penjualan'] = DB::select("SELECT penjualan.tanggal,
+             SUM((SELECT SUM(detail_penjualan.jumlah)
+              FROM detail_penjualan
+              WHERE detail_penjualan.id_penjualan = penjualan.id
+                             AND detail_penjualan.tipe_penjualan = 'antar mobil')
+             )AS total_mobil, SUM((SELECT SUM(detail_penjualan.jumlah)
+              FROM detail_penjualan
+              WHERE detail_penjualan.id_penjualan = penjualan.id
+                             AND detail_penjualan.tipe_penjualan = 'antar motor')
+             )AS total_motor, SUM((SELECT SUM(detail_penjualan.jumlah)
+              FROM detail_penjualan
+              WHERE detail_penjualan.id_penjualan = penjualan.id
+                             AND detail_penjualan.tipe_penjualan = 'beli di tempat')
+             )AS total_tempat
+             FROM penjualan
+             where month(penjualan.tanggal) = :bulan and year(penjualan.tanggal) = :tahun
+       group by penjualan.tanggal
+       order by penjualan.tanggal asc",['bulan' => $m, 'tahun' => $y]);
+
     return view('rekapan_pengantaran',$data);
   }
 

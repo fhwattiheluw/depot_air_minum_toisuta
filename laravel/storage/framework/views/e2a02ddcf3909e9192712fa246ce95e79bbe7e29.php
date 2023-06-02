@@ -23,7 +23,7 @@ ini judul
               <h6 class="text-white text-capitalize ps-4">Rekapan tipe penjualan</h6>
             </div>
             <div class="col-6 text-end">
-              <a class="btn btn-dark mb-0" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="material-icons text-sm">print</i> Cetak</a>
+              
             </div>
           </div>
           <!-- <h6 class="text-white text-capitalize ps-3">Manajemen user</h6> -->
@@ -69,7 +69,6 @@ ini judul
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah beli di tempat</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah antar dengan motor</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah antar dengan mobil</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total</th>
               </tr>
             </thead>
             <tbody>
@@ -79,27 +78,18 @@ ini judul
                   <p><?php echo e($items->tanggal); ?></p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <p><?php echo e($items->tempat); ?></p>
+                  <p><?php echo e($items->total_tempat); ?></p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <p><?php echo e($items->motor); ?></p>
+                  <p><?php echo e($items->total_motor); ?></p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <p><?php echo e($items->mobil); ?></p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                  <p><?php echo e($items->total_harga); ?></p>
+                  <p><?php echo e($items->total_mobil); ?></p>
                 </td>
               </tr>
               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </tbody>
-            <tfoot>
-              <tr>
-                <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Total penjualan</th>
-                <th class="text-center text-uppercase text-secondary   font-weight-bolder opacity-7">Rp. <?php echo e($total->penjualan); ?></th>
-              </tr>
-            </tfoot>
           </table>
         </div>
       </div>
