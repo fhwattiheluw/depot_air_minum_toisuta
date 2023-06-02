@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Penjualan;
+use App\Models\Pengeluaran;
+use Illuminate\Http\Request;
 use App\Models\detail_penjualan;
+use App\Models\detail_pengeluaran;
 use Illuminate\Support\Facades\DB;
 
 class RekapanController extends Controller
@@ -60,9 +62,9 @@ class RekapanController extends Controller
 FROM penjualan
 where month(penjualan.tanggal) = :bulan and year(penjualan.tanggal) = :tahun
 group by penjualan.tanggal
-order by penjualan.tanggal asc",['bulan' => $m, 'tahun' => $y]);
+order by penjualan.tanggal asc", ['bulan' => $m, 'tahun' => $y]);
 
-return view('rekapan_pengantaran',$data);
+    return view('rekapan_pengantaran',$data);
 }
 
 public function kostumer(Request $request)
@@ -81,8 +83,27 @@ public function kostumer(Request $request)
   return view('rekapan_penjualan_kostumer',$data);
 }
 
-public function pengeluaran($value='')
-{
-  return view('rekapan_pengeluaran');
-}
+  public function pengeluaran(Request $request, $bulan = null, $tahun = null)
+  {
+    
+    $bulan = $request->bulan;
+    $tahun = $request->tahun;
+    $data['filter'] = ['bulan' => $bulan, 'tahun' => $tahun];
+    $data['pengeluaran'] = Pengeluaran::select(DB::raw('tanggal,sum(total_transaksi) as total'))->whereMonth('tanggal', $bulan)->whereYear('tanggal',$tahun)->groupBy('tanggal')->get();
+    $data['total'] =  Pengeluaran::select(DB::raw('sum(total_transaksi) as total'))->whereMonth('tanggal', $bulan)->whereYear('tanggal', $tahun)->first();
+
+    return view('rekapan_pengeluaran', $data);
+  }
+
+  public function detail_pengeluaran(Request $request,$date = null)
+  {
+    $data['date'] = $date;
+    $data['detail'] = detail_pengeluaran::select('detail_pengeluaran.*', 'transaksi_pengeluaran.tanggal','item_pengeluaran.nama_item')
+    ->leftJoin('transaksi_pengeluaran', 'detail_pengeluaran.id_pengeluaran', '=', 'transaksi_pengeluaran.id')
+    ->leftJoin('item_pengeluaran', 'detail_pengeluaran.id_item', '=', 'item_pengeluaran.id')
+    ->where('transaksi_pengeluaran.tanggal',$date)
+    ->get();
+
+    return view('rekapan_detail_pengeluaran',$data);
+  }
 }

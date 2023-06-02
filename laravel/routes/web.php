@@ -47,3 +47,4 @@ Route::get('/rekapan/semua/detail/{date}',[RekapanController::class, 'detail_pen
 Route::get('/rekapan/pengantaran',[RekapanController::class, 'pengantaran'])->name('rekapan.pengantaran');
 Route::get('/rekapan/kostumer',[RekapanController::class, 'kostumer'])->name('rekapan.kostumer');
 Route::get('/rekapan/pengeluaran',[RekapanController::class, 'pengeluaran'])->name('rekapan.pengeluaran');
+Route::get('/rekapan/pengeluaran/detail/{date}',[RekapanController::class, 'detail_pengeluaran'])->name('rekapan.pengeluaran.detail');

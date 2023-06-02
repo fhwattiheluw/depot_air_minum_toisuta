@@ -1,6 +1,6 @@
-@extends('layouts')
 
-@section('breadcrumb')
+
+<?php $__env->startSection('breadcrumb'); ?>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
@@ -8,13 +8,13 @@
   </ol>
   <h6 class="font-weight-bolder mb-0">Rekapan pengeluaran</h6>
 </nav>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('title')
+<?php $__env->startSection('title'); ?>
 ini judul
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('konten')
+<?php $__env->startSection('konten'); ?>
 <div class="row">
   <div class="col-12">
     <div class="card my-4">
@@ -40,9 +40,9 @@ ini judul
                   <div class="input-group input-group-outline mb-4 is-filled">
                     <label for="exampleFormControlSelect1" class="form-label">Bulan</label>
                     <select class="form-control" name="bulan" id="exampleFormControlSelect1">
-                      @for($i = 1; $i <= 12; $i++)
-                      <option value="{{$i}}" @if($i == $filter['bulan']) selected @endif>{{$i}}</option>
-                      @endfor
+                      <?php for($i = 1; $i <= 12; $i++): ?>
+                      <option value="<?php echo e($i); ?>" <?php if($i == $filter['bulan']): ?> selected <?php endif; ?>><?php echo e($i); ?></option>
+                      <?php endfor; ?>
                     </select>
                   </div>
                 </div>
@@ -50,9 +50,9 @@ ini judul
                   <div class="input-group input-group-outline is-filled">
                     <label for="exampleFormControlSelect1" class="form-label">Tahun</label>
                     <select class="form-control" name="tahun" id="exampleFormControlSelect1">
-                      @for($year = date('Y'); $year >= 2020; $year--)
-                      <option value="{{$year}}" @if($year == $filter['tahun']) selected @endif>{{$year}}</option>
-                      @endfor
+                      <?php for($year = date('Y'); $year >= 2020; $year--): ?>
+                      <option value="<?php echo e($year); ?>" <?php if($year == $filter['tahun']): ?> selected <?php endif; ?>><?php echo e($year); ?></option>
+                      <?php endfor; ?>
                     </select>
                   </div>
                 </div>
@@ -73,27 +73,27 @@ ini judul
               </tr>
             </thead>
             <tbody>
-              @foreach($pengeluaran as $item)
+              <?php $__currentLoopData = $pengeluaran; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <tr>
                 <td class="align-middle text-center text-sm">
-                  <p>{{$item->tanggal}}</p>
+                  <p><?php echo e($item->tanggal); ?></p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <p>{{$item->total}}</p>
+                  <p><?php echo e($item->total); ?></p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <a href="{{Route('rekapan.pengeluaran.detail',['date' => $item->tanggal])}}" class="text-success font-weight-bold text-xs" >
+                  <a href="<?php echo e(Route('rekapan.pengeluaran.detail',['date' => $item->tanggal])); ?>" class="text-success font-weight-bold text-xs" >
                     <i class="fas fa-edit"></i>Lihat detail
                   </a>
                 </td>
               </tr>
-              @endforeach
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </tbody>
             <tfoot>
               <tr>
                 <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Total Pengeluaran</th>
-                <th class="text-center text-uppercase text-secondary   font-weight-bolder opacity-7">Rp. {{$total->total}}</th>
+                <th class="text-center text-uppercase text-secondary   font-weight-bolder opacity-7">Rp. <?php echo e($total->total); ?></th>
               </tr>
             </tfoot>
           </table>
@@ -102,4 +102,6 @@ ini judul
     </div>
   </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\LaravelProject\depot-app\depot_air_minum_toisuta\laravel\resources\views/rekapan_pengeluaran.blade.php ENDPATH**/ ?>

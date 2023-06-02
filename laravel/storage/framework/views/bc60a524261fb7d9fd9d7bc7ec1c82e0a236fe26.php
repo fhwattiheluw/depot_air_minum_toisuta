@@ -54,10 +54,10 @@ Form Detail Pengeluaran
                     <div class="col-lg-6 col-md-6">
                       <div class="input-group input-group-static is-invalid mb-4">
                         <label for="exampleFormControlSelect1" class="ms-0">jenis pengeluaran</label>
-                        <select class="form-control" name="id_pengeluaran" id="exampleFormControlSelect1">
+                        <select class="form-control" name="item_pengeluaran" id="exampleFormControlSelect1">
                           <option>--- Pilih ---</option>
                           <?php $__currentLoopData = $jenis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jenis): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($jenis->id); ?>"><?php echo e($jenis->nama_pengeluaran); ?></option>
+                            <option value="<?php echo e($jenis->id); ?>"><?php echo e($jenis->nama_item); ?></option>
                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                       </div>
@@ -66,19 +66,47 @@ Form Detail Pengeluaran
                         <!-- <label class="form-label">Tanggal</label> -->
                         <input type="date" name="tanggal" class="form-control">
                       </div>
-                      <div class="input-group input-group-outline is-invalid my-3">
+                      <div class="input-group input-group-outline <?php $__errorArgs = ['jumlah'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> my-3">
                         <label class="form-label">Jumlah</label>
                         <input type="text" name="jumlah" class="form-control">
                       </div>
-                      <div class="input-group input-group-outline is-invalid my-3">
+                      <div class="input-group input-group-outline <?php $__errorArgs = ['harga_satuan'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> my-3">
                         <label class="form-label">Harga satuan</label>
                         <input type="number" name="harga_satuan" class="form-control">
                       </div>
-                      <div class="input-group input-group-outline is-invalid my-3">
+                      <div class="input-group input-group-outline <?php $__errorArgs = ['keterangan'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> my-3">
                         <textarea name="keterangan" class="form-control" rows="5" placeholder="Ketik keterangan" spellcheck="false"></textarea>
                       </div>
                       <label for="">Nota</label>
-                      <div class="input-group input-group-outline  is-invalid my-3">
+                      <div class="input-group input-group-outline <?php $__errorArgs = ['nota'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> my-3">
                         <!-- <label class="form-label">Nota</label> -->
                         <input type="file" name="nota" class="form-control">
                       </div>

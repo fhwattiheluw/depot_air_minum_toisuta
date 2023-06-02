@@ -9,7 +9,7 @@ class item_pengeluaran extends Model
 {
     use HasFactory;
     protected $table = 'item_pengeluaran';
-    protected $fillable = ['nama_item'];
+    protected $guarder = ['id'];
 
 
 }
