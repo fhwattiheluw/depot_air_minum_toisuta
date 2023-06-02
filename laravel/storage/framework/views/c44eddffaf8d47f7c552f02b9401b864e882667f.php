@@ -31,7 +31,7 @@ ini judul
       </div>
       <div class="card-body pt-4 pb-3">
         <div class="row ">
-          <div class="col col-md-5 ">
+          <div class="col col-md-6 ">
             <form method="get">
               <?php echo csrf_field(); ?>
               <div class="row">
@@ -66,7 +66,7 @@ ini judul
                   </div>
                 </div>
                 <div class="col">
-                  <button type="submit" class="btn btn-primary mb-4">Lihat</button>
+                  <button type="submit" class="btn btn-primary mb-4"><i class="fas fa-search"></i> Lihat</button>
                 </div>
               </div>
             </form>

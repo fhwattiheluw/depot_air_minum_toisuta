@@ -58,7 +58,7 @@ ini judul
                   </div>
                 </div>
                 <div class="col">
-                  <button type="submit" class="btn btn-primary mb-4">Lihat</button>
+                  <button type="submit" class="btn btn-primary mb-4"><i class="fas fa-search"></i> Lihat</button>
                 </div>
               </div>
             </form>

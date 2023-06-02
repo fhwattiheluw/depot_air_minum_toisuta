@@ -23,7 +23,7 @@ ini judul
               <h6 class="text-white text-capitalize ps-4">Rekapan tipe penjualan</h6>
             </div>
             <div class="col-6 text-end">
-              
+
             </div>
           </div>
           <!-- <h6 class="text-white text-capitalize ps-3">Manajemen user</h6> -->
@@ -33,6 +33,7 @@ ini judul
         <div class="row ">
           <div class="col col-md-5 ">
             <form method="get">
+              <?php echo csrf_field(); ?>
               <div class="row">
                 <div class="col ">
                   <div class="input-group input-group-outline mb-4 is-filled">
@@ -55,7 +56,7 @@ ini judul
                   </div>
                 </div>
                 <div class="col">
-                  <button type="submit" class="btn btn-primary mb-4">Lihat</button>
+                  <button type="submit" class="btn btn-primary mb-4"><i class="fas fa-search"></i> Lihat</button>
                 </div>
               </div>
             </form>
