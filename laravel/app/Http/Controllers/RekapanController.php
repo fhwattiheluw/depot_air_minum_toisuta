@@ -73,19 +73,25 @@ public function kostumer(Request $request)
   $bulan = $request->bulan;
   $tahun = $request->tahun;
   $data['filter'] = ['hari' => $hari,'bulan' => $bulan, 'tahun' => $tahun];
-  $query = "select t2.tanggal, sum(t1.jumlah) as jumlah , t3.nama_kostumer
-  from detail_penjualan t1
-  inner join penjualan t2 on t2.id = t1.id_penjualan
-  inner join kostumers t3 on t3.id = t1.id_kostumer
-  where day(t2.tanggal) = :hari and month(t2.tanggal) = :bulan and year(t2.tanggal) = :tahun
-  group by t2.tanggal,t3.nama_kostumer";
-  $data['rekapan'] = DB::select($query,['hari' => $hari,'bulan'=> $bulan,'tahun' => $tahun]);
+  // $query = "select t2.tanggal, sum(t1.jumlah) as jumlah , t3.nama_kostumer
+  // from detail_penjualan t1
+  // inner join penjualan t2 on t2.id = t1.id_penjualan
+  // inner join kostumers t3 on t3.id = t1.id_kostumer
+  // where day(t2.tanggal) = :hari and month(t2.tanggal) = :bulan and year(t2.tanggal) = :tahun
+  // group by t2.tanggal,t3.nama_kostumer";
+  $query = "select kostumers.nama_kostumer, kostumers.telp, kostumers.alamat, sum(detail_penjualan.jumlah) as jumlah
+from kostumers
+inner join detail_penjualan on kostumers.id = detail_penjualan.id_kostumer
+inner join penjualan on detail_penjualan.id_penjualan = penjualan.id
+where month(penjualan.tanggal) = :bulan and year(penjualan.tanggal) = :tahun
+group by kostumers.nama_kostumer,kostumers.telp,kostumers.alamat";
+  $data['rekapan'] = DB::select($query,['bulan'=> $bulan,'tahun' => $tahun]);
   return view('rekapan_penjualan_kostumer',$data);
 }
 
   public function pengeluaran(Request $request, $bulan = null, $tahun = null)
   {
-    
+
     $bulan = $request->bulan;
     $tahun = $request->tahun;
     $data['filter'] = ['bulan' => $bulan, 'tahun' => $tahun];

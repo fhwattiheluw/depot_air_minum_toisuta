@@ -33,20 +33,10 @@ ini judul
       </div>
       <div class="card-body pt-4 pb-3">
         <div class="row ">
-          <div class="col col-md-6 ">
+          <div class="col col-md-5 ">
             <form method="get">
               @csrf
               <div class="row">
-                <div class="col ">
-                  <div class="input-group input-group-outline mb-4 is-filled">
-                    <label for="exampleFormControlSelect1" class="form-label">Hari</label>
-                    <select class="form-control" name="hari" id="exampleFormControlSelect1">
-                      @for($i = 01; $i <= 31; $i++)
-                      <option value="{{$i}}" @if($i == $filter['hari']) selected @endif >{{$i}}</option>
-                      @endfor
-                    </select>
-                  </div>
-                </div>
                 <div class="col ">
                   <div class="input-group input-group-outline mb-4 is-filled">
                     <label for="exampleFormControlSelect1" class="form-label">Bulan</label>

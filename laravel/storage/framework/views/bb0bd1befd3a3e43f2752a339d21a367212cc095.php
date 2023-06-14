@@ -62,7 +62,7 @@ endif;
 unset($__errorArgs, $__bag); ?> mb-4">
                         <label for="exampleFormControlSelect1" class="ms-0">jenis pengeluaran</label>
                         <select class="form-control" name="item_pengeluaran" id="exampleFormControlSelect1">
-                          <option>--- Pilih ---</option>
+                          <option value="">--- Pilih ---</option>
                           <?php $__currentLoopData = $jenis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jenis): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($jenis->id); ?>"><?php echo e($jenis->nama_item); ?></option>
                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

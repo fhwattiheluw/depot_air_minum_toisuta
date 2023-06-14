@@ -31,20 +31,10 @@ ini judul
       </div>
       <div class="card-body pt-4 pb-3">
         <div class="row ">
-          <div class="col col-md-6 ">
+          <div class="col col-md-5 ">
             <form method="get">
               <?php echo csrf_field(); ?>
               <div class="row">
-                <div class="col ">
-                  <div class="input-group input-group-outline mb-4 is-filled">
-                    <label for="exampleFormControlSelect1" class="form-label">Hari</label>
-                    <select class="form-control" name="hari" id="exampleFormControlSelect1">
-                      <?php for($i = 01; $i <= 31; $i++): ?>
-                      <option value="<?php echo e($i); ?>" <?php if($i == $filter['hari']): ?> selected <?php endif; ?> ><?php echo e($i); ?></option>
-                      <?php endfor; ?>
-                    </select>
-                  </div>
-                </div>
                 <div class="col ">
                   <div class="input-group input-group-outline mb-4 is-filled">
                     <label for="exampleFormControlSelect1" class="form-label">Bulan</label>
