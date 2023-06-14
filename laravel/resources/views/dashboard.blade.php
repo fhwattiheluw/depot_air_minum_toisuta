@@ -90,24 +90,26 @@ Ini judul
               </tr>
             </thead>
             <tbody>
+              @foreach($notif_pengembilan_galon as $row)
               <tr>
                 <td>
                   <div class="d-flex px-2 py-1">
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">John Michael</h6>
+                      <h6 class="mb-0 text-sm">{{$row->nama_kostumer}}</h6>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <a href="#"><i class="fab fa-whatsapp"></i><span class="text-secondary text-xs font-weight-bold">+6282138730121</span></a>
+                  <a href="#"><i class="fab fa-whatsapp"></i><span class="text-secondary text-xs font-weight-bold">{{$row->telp}}</span></a>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <span class="text-secondary text-xs font-weight-bold">Jln. asdasdasda</span>
+                  <span class="text-secondary text-xs font-weight-bold">{{$row->alamat}}</span>
                 </td>
                 <td class="align-middle text-center">
-                  <span class="badge badge-sm bg-gradient-success">23/04/18</span>
+              <span class="badge badge-sm bg-gradient-success">{{$row->tanggal}}</span>
                 </td>
               </tr>
+              @endforeach
 
             </tbody>
           </table>

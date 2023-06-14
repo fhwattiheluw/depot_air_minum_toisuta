@@ -52,35 +52,35 @@ Form Detail Pengeluaran
                   <form action="{{Route('detail_pengeluaran.store')}}" method="post"  class="row justify-content-md-center" enctype="multipart/form-data">
                     @csrf
                     <div class="col-lg-6 col-md-6">
-                      <div class="input-group input-group-static is-invalid mb-4">
+                      <div class="input-group input-group-static @error('item_pengeluaran') is-invalid @enderror mb-4">
                         <label for="exampleFormControlSelect1" class="ms-0">jenis pengeluaran</label>
                         <select class="form-control" name="item_pengeluaran" id="exampleFormControlSelect1">
-                          <option>--- Pilih ---</option>
+                          <option value="">--- Pilih ---</option>
                           @foreach($jenis as $jenis)
                             <option value="{{$jenis->id}}">{{$jenis->nama_item}}</option>
                           @endforeach
                         </select>
                       </div>
                       <label class="ms-0">Tanggal</label>
-                      <div class="input-group input-group-outline my-3">
+                      <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3">
                         <!-- <label class="form-label">Tanggal</label> -->
-                        <input type="date" name="tanggal" class="form-control">
+                        <input type="date" name="tanggal" class="form-control" value="{{old('tanggal')}}">
                       </div>
                       <div class="input-group input-group-outline @error('jumlah') is-invalid @enderror my-3">
                         <label class="form-label">Jumlah</label>
-                        <input type="text" name="jumlah" class="form-control">
+                        <input type="text" name="jumlah" class="form-control" value="{{old('jumlah')}}">
                       </div>
                       <div class="input-group input-group-outline @error('harga_satuan') is-invalid @enderror my-3">
                         <label class="form-label">Harga satuan</label>
-                        <input type="number" name="harga_satuan" class="form-control">
+                        <input type="number" name="harga_satuan" class="form-control" value="{{old('harga_satuan')}}">
                       </div>
                       <div class="input-group input-group-outline @error('keterangan') is-invalid @enderror my-3">
-                        <textarea name="keterangan" class="form-control" rows="5" placeholder="Ketik keterangan" spellcheck="false"></textarea>
+                        <textarea name="keterangan" class="form-control" rows="5" placeholder="Ketik keterangan" spellcheck="false">{{old('keterangan')}}</textarea>
                       </div>
                       <label for="">Nota</label>
                       <div class="input-group input-group-outline @error('nota') is-invalid @enderror my-3">
                         <!-- <label class="form-label">Nota</label> -->
-                        <input type="file" name="nota" class="form-control">
+                        <input type="file" name="nota" class="form-control" value="{{old('nota')}}">
                       </div>
                       <div class="input-group input-group-outline my-3">
                         <button type="submit" class="btn btn-primary">Submit</button>
