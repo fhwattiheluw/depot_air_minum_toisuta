@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
-use App\Models\Penjualan;
+use App\Models\Stok;
 use App\Models\Kostumer;
+use App\Models\Penjualan;
+use Illuminate\Http\Request;
 use App\Models\detail_penjualan;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
 
 class PenjualanController extends Controller
 {
   public function index()
   {
-    $data = array('kostumers' => Kostumer::all() );
-    return view('form_penjualan',$data);
+    $stoks = Cache::remember('stoks', 60, function () {
+      $stok = Stok::find(1);
+      return $stok->stok;
+    });
+    $data = Kostumer::all();
+    return view('form_penjualan',['kostumers'=>$data,'stoks'=>$stoks]);
   }
 
   public function insert(Request $request)
@@ -50,6 +56,13 @@ class PenjualanController extends Controller
       'id_penjualan' => $id_penjualan,
 
     ]);
+
+    // update stok
+    $stok = Stok::findOrFail(1);
+    $new_stok = ((int)$stok->stok - $validated['jumlah']);
+    $stok->update(['stok' => $new_stok]);
+    
+    Cache::forget('stoks');
 
     // redirect with session
     return redirect(Route('penjualan.input'))->with('success','data penjualan berhasil di simpan');

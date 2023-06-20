@@ -53,14 +53,24 @@
                 </div>
               </div>
               <div class="card-body">
-                <form action="{{route('dashboard')}}" role="form" class="text-start">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form action="{{route('login')}}" method="post" role="form" class="text-start">
+                  @csrf
                   <div class="input-group input-group-outline  is-invalid my-3">
                     <label class="form-label">Username</label>
-                    <input type="email" class="form-control">
+                    <input type="email" name="email" class="form-control">                    
                   </div>
                   <div class="input-group input-group-outline  is-invalid mb-3">
                     <label class="form-label">Kata sandi</label>
-                    <input type="password" class="form-control">
+                    <input type="password" name="password" class="form-control">
                   </div>
                   <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" type="checkbox" id="rememberMe" checked>

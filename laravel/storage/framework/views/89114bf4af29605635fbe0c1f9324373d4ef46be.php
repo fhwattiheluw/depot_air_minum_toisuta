@@ -12,6 +12,8 @@
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
+<?php use Illuminate\Support\Facades\Cache;?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -171,7 +173,7 @@
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="#">STOK: 30 tutup botol</a>
+              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="#">STOK: <?php echo e(Cache::get('stoks')); ?> tutup botol</a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
@@ -188,9 +190,12 @@
               </a>
             </li>
             <li class="nav-item d-flex align-items-center">
-              <a href="/pages/sign-in.html" class="nav-link text-body font-weight-bold px-0">
+              <a href="#" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Nama user login</span>
+                <span class="d-sm-inline d-none"><?php echo e(Auth::user()->name); ?> &nbsp;</span>
+              </a>
+              <a href="<?php echo e(route('logout')); ?>" class="nav-link text-body font-weight-bold px-0">
+                <span class="d-sm-inline d-none"> Logout</span>
               </a>
             </li>
           </ul>

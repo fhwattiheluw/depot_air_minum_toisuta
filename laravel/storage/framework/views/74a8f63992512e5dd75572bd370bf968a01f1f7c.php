@@ -53,14 +53,24 @@
                 </div>
               </div>
               <div class="card-body">
-                <form action="<?php echo e(route('dashboard')); ?>" role="form" class="text-start">
+                <?php if($errors->any()): ?>
+                    <div class="alert alert-danger">
+                        <ul>
+                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($error); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+                <form action="<?php echo e(route('login')); ?>" method="post" role="form" class="text-start">
+                  <?php echo csrf_field(); ?>
                   <div class="input-group input-group-outline  is-invalid my-3">
                     <label class="form-label">Username</label>
-                    <input type="email" class="form-control">
+                    <input type="email" name="email" class="form-control">                    
                   </div>
                   <div class="input-group input-group-outline  is-invalid mb-3">
                     <label class="form-label">Kata sandi</label>
-                    <input type="password" class="form-control">
+                    <input type="password" name="password" class="form-control">
                   </div>
                   <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" type="checkbox" id="rememberMe" checked>

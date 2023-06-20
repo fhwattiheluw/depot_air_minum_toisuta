@@ -25,43 +25,40 @@ ini judul
               <h6 class="text-white text-capitalize ps-4">Rekapan berdasarkan kostumer</h6>
             </div>
             <div class="col-6 text-end">
-              <a class="btn btn-dark mb-0" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="material-icons text-sm">print</i> Cetak</a>
+              <!-- <a class="btn btn-dark mb-0" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="material-icons text-sm">print</i> Cetak</a> -->
             </div>
           </div>
           <!-- <h6 class="text-white text-capitalize ps-3">Manajemen user</h6> -->
         </div>
       </div>
-      <div class="card-body px-0 pb-2">
+      <div class="card-body pt-4 pb-3">
         <div class="row ">
           <div class="col col-md-5 ">
-            <form>
+            <form method="get">
+              <?php echo csrf_field(); ?>
               <div class="row">
                 <div class="col ">
-                  <div class="input-group input-group-static mb-4">
-                    <label for="exampleFormControlSelect1" class="ms-0">Bulan</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                  <div class="input-group input-group-outline mb-4 is-filled">
+                    <label for="exampleFormControlSelect1" class="form-label">Bulan</label>
+                    <select class="form-control" name="bulan" id="exampleFormControlSelect1">
+                      <?php for($i = 01; $i <= 12; $i++): ?>
+                      <option value="<?php echo e($i); ?>" <?php if($i == $filter['bulan']): ?> selected <?php endif; ?> ><?php echo e($i); ?></option>
+                      <?php endfor; ?>
                     </select>
                   </div>
                 </div>
                 <div class="col ">
-                  <div class="input-group input-group-static mb-4">
-                    <label for="exampleFormControlSelect1" class="ms-0">Tahun</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                  <div class="input-group input-group-outline mb-4 is-filled">
+                    <label for="exampleFormControlSelect1" class="form-label">Tahun</label>
+                    <select class="form-control" name="tahun" id="exampleFormControlSelect1">
+                      <?php for($i = 2020; $i <= date('Y'); $i++): ?>
+                      <option value="<?php echo e($i); ?>" <?php if($i == $filter['tahun']): ?> selected <?php endif; ?> ><?php echo e($i); ?></option>
+                      <?php endfor; ?>
                     </select>
                   </div>
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-primary mb-4" name="button">Submit</button>
+                  <button type="submit" class="btn btn-primary mb-4"><i class="fas fa-search"></i> Lihat</button>
                 </div>
               </div>
             </form>
@@ -71,39 +68,23 @@ ini judul
           <table class="table align-items-center mb-0">
             <thead>
               <tr>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">kostumer a</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">kostomer b</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">kostomer c</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">kostomer d</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kostumer</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah</th>
               </tr>
             </thead>
             <tbody>
+              <?php $__currentLoopData = $rekapan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <tr>
                 <td class="align-middle text-center text-sm">
-                  <p>$item_tgl->tanggal</p>
+                  <p><?php echo e($item->nama_kostumer); ?></p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <p>6</p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                  <p>5</p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                  <p>300000</p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                  <p>50000</p>
+                  <p><?php echo e($item->jumlah); ?></p>
                 </td>
               </tr>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </tbody>
-            <tfoot>
-              <tr>
-                <th class="text-uppercase text-secondary  font-weight-bolder opacity-7">Net income</th>
-                <th class="text-center text-uppercase text-secondary   font-weight-bolder opacity-7">Rp. 1000000</th>
-              </tr>
-            </tfoot>
           </table>
         </div>
       </div>
