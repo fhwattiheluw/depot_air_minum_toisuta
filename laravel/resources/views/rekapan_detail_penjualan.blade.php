@@ -25,7 +25,7 @@ ini judul
             <h6 class="text-white text-capitalize ps-4">Detail penjualan : {{$date}}</h6>
             </div>
             <div class="col-6 text-end">
-              <a class="btn btn-dark mb-0" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="material-icons text-sm">print</i> Cetak</a>
+              <!-- <a class="btn btn-dark mb-0" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="material-icons text-sm">print</i> Cetak</a> -->
             </div>
           </div>
           <!-- <h6 class="text-white text-capitalize ps-3">Manajemen user</h6> -->
@@ -63,12 +63,12 @@ ini judul
                   <p class="text-xs font-weight-bold mb-0">{{$item->jumlah}}</p>
                 </td>
                 <td>
-                  <a href="#" class="text-primary font-weight-bold text-xs" >
+                  <!-- <a href="#" class="text-primary font-weight-bold text-xs" >
                     <i class="fas fa-edit"></i>Edit
                   </a>
                   <a href="#" class="text-danger font-weight-bold text-xs" >
                     <i class="fas fa-edit"></i>Remove
-                  </a>
+                  </a> -->
                 </td>
               </tr>
               @endforeach

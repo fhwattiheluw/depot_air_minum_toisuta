@@ -13,7 +13,7 @@ class AkunController extends Controller
 {
   public function kelola()
   {
-    $items = User::all();
+    $items = User::where("level","!=","admin")->get();
     return view('kelola_user', ['items'=>$items]);
   }
 

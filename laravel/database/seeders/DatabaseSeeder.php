@@ -24,15 +24,21 @@ class DatabaseSeeder extends Seeder
 
       DB::table('users')->insert([
           'name' => 'user' . Str::random(10),
-          'email' => Str::random(15).'@gmail.com',
+          'email' => "Str::random(15).'@gmail.com'",
           'password' =>  Hash::make('12345678'),
           'level' => 'operator'
       ]);
+
       DB::table('users')->insert([
-          'name' => 'admin' . Str::random(10),
-          'email' => Str::random(15).'@gmail.com',
-          'password' =>  Hash::make('12345678'),
-          'level' => 'admin'
+        'name' => 'Admin',
+        'email'=>'admin@depot.com',
+        'level'=>'admin',
+        'password'=>bcrypt('password')
+      ]);
+
+      DB::table('stok_tutup_galons')->insert([
+        'id' => '1',
+        'stok'=>0
       ]);
     }
 }

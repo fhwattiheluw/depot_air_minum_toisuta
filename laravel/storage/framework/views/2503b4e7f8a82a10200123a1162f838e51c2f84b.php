@@ -4,9 +4,9 @@
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/material-dashboard
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+* Copyright 2023 Baku.Kele Tim (https://www.creative-tim.com)
 * Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
+* Coded by Baku.Kele Tim
 
 =========================================================
 
@@ -21,7 +21,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Material Dashboard 2 by Creative Tim
+    Material Dashboard 2 by Baku.Kele Tim
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -53,14 +53,45 @@
                 </div>
               </div>
               <div class="card-body">
-                <form action="<?php echo e(route('dashboard')); ?>" role="form" class="text-start">
-                  <div class="input-group input-group-outline  is-invalid my-3">
+                <form action="<?php echo e(route('login')); ?>" method="post" role="form" class="text-start">
+                  <?php echo csrf_field(); ?>
+                  <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>  <span class="text-danger"><?php echo e($message); ?></span> <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                  <div class="input-group input-group-outline <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>  is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> my-3">
                     <label class="form-label">Username</label>
-                    <input type="email" class="form-control">
+                    <input type="email" name="email" class="form-control">
                   </div>
-                  <div class="input-group input-group-outline  is-invalid mb-3">
+<?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>  <span class="text-danger"><?php echo e($message); ?></span> <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                  <div class="input-group input-group-outline  <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>  is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> mb-3">
                     <label class="form-label">Kata sandi</label>
-                    <input type="password" class="form-control">
+                    <input type="password" name="password" class="form-control">
                   </div>
                   <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" type="checkbox" id="rememberMe" checked>
@@ -84,23 +115,23 @@
                   document.write(new Date().getFullYear())
                 </script>,
                 made with <i class="fa fa-heart" aria-hidden="true"></i> by
-                <a href="#" class="font-weight-bold text-white" >Creative Tim</a>
+                <a href="https://www.instagram.com/baku.kele/" class="font-weight-bold text-white" >Baku.Kele Tim</a>
                 for a better web.
               </div>
             </div>
             <div class="col-12 col-md-6">
               <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-white" >Creative Tim</a>
+                  <a href="https://www.instagram.com/baku.kele/" class="nav-link text-white" >Baku.Kele Tim</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-white" >About Us</a>
+                  <a href="https://www.instagram.com/baku.kele/" class="nav-link text-white" >About Us</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-white" >Blog</a>
+                  <a href="https://www.instagram.com/baku.kele/" class="nav-link text-white" >Blog</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link pe-0 text-white" >License</a>
+                  <a href="https://www.instagram.com/baku.kele/" class="nav-link pe-0 text-white" >License</a>
                 </li>
               </ul>
             </div>

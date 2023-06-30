@@ -4,9 +4,9 @@
 =========================================================
 
 * Product Page: https://www.creative-tim.com/product/material-dashboard
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+* Copyright 2023 Baku.Kele Tim (https://www.creative-tim.com)
 * Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
+* Coded by Baku.Kele Tim
 
 =========================================================
 
@@ -21,7 +21,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Material Dashboard 2 by Creative Tim
+    Material Dashboard 2 by Baku.Kele Tim
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -53,22 +53,15 @@
                 </div>
               </div>
               <div class="card-body">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 <form action="{{route('login')}}" method="post" role="form" class="text-start">
                   @csrf
-                  <div class="input-group input-group-outline  is-invalid my-3">
+                  @error('email')  <span class="text-danger">{{$message}}</span> @enderror
+                  <div class="input-group input-group-outline @error('email')  is-invalid @enderror my-3">
                     <label class="form-label">Username</label>
-                    <input type="email" name="email" class="form-control">                    
+                    <input type="email" name="email" class="form-control">
                   </div>
-                  <div class="input-group input-group-outline  is-invalid mb-3">
+@error('password')  <span class="text-danger">{{$message}}</span> @enderror
+                  <div class="input-group input-group-outline  @error('password')  is-invalid @enderror mb-3">
                     <label class="form-label">Kata sandi</label>
                     <input type="password" name="password" class="form-control">
                   </div>
@@ -94,23 +87,23 @@
                   document.write(new Date().getFullYear())
                 </script>,
                 made with <i class="fa fa-heart" aria-hidden="true"></i> by
-                <a href="#" class="font-weight-bold text-white" >Creative Tim</a>
+                <a href="https://www.instagram.com/baku.kele/" class="font-weight-bold text-white" >Baku.Kele Tim</a>
                 for a better web.
               </div>
             </div>
             <div class="col-12 col-md-6">
               <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-white" >Creative Tim</a>
+                  <a href="https://www.instagram.com/baku.kele/" class="nav-link text-white" >Baku.Kele Tim</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-white" >About Us</a>
+                  <a href="https://www.instagram.com/baku.kele/" class="nav-link text-white" >About Us</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link text-white" >Blog</a>
+                  <a href="https://www.instagram.com/baku.kele/" class="nav-link text-white" >Blog</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link pe-0 text-white" >License</a>
+                  <a href="https://www.instagram.com/baku.kele/" class="nav-link pe-0 text-white" >License</a>
                 </li>
               </ul>
             </div>

@@ -25,7 +25,7 @@ ini judul
             <h6 class="text-white text-capitalize ps-4">Detail pengeluaran : <?php echo e($date); ?></h6>
             </div>
             <div class="col-6 text-end">
-              <a class="btn btn-dark mb-0" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="material-icons text-sm">print</i> Cetak</a>
+              <!-- <a class="btn btn-dark mb-0" href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="material-icons text-sm">print</i> Cetak</a> -->
             </div>
           </div>
           <!-- <h6 class="text-white text-capitalize ps-3">Manajemen user</h6> -->

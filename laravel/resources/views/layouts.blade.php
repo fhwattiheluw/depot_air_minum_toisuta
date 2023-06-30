@@ -23,7 +23,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <title>
-    @yield('title')
+    SIM DEPOT AIR 
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -68,6 +68,7 @@
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
+        @if(Auth::user()->level == "admin")
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Kelola data</h6>
         </li>
@@ -95,6 +96,7 @@
             <span class="nav-link-text ms-1">Kelola data kostumer</span>
           </a>
         </li>
+        @endif
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Penjualan dan pengeluaran</h6>
         </li>
@@ -122,6 +124,7 @@
             <span class="nav-link-text ms-1">peminjaman galon</span>
           </a>
         </li>
+        @if(Auth::user()->level == "admin")
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">laporan</h6>
         </li>
@@ -157,6 +160,7 @@
             <span class="nav-link-text ms-1">Rekapan pengeluaran</span>
           </a>
         </li>
+        @endif
 
       </ul>
     </div>
@@ -184,17 +188,17 @@
                 </div>
               </a>
             </li>
-            <li class="nav-item px-3 d-flex align-items-center">
+            <!-- <li class="nav-item px-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0">
                 <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item d-flex align-items-center">
               <a href="#" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">{{Auth::user()->name}} &nbsp;</span>
               </a>
-              <a href="{{route('logout')}}" class="nav-link text-body font-weight-bold px-0">
+              <a href="{{route('logout')}}" class="btn btn-primary ">
                 <span class="d-sm-inline d-none"> Logout</span>
               </a>
             </li>
